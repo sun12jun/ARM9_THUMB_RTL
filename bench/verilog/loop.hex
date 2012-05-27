@@ -1,0 +1,24 @@
+// test_vector: loop
+//
+0000 // mov r0,  #0
+0081 // mov r1,  #1
+0102 // mov r2,  #2
+0183 // mov r3,  #3
+0204 // mov r4,  #4
+0285 // mov r5,  #5
+0306 // mov r6,  #6
+0387 // mov r7,  #7
+4400 // mov r8,  r0
+4481 // mov r9,  r1
+4502 // mov r10, r2
+4583 // mov r11, r3
+4604 // mov r12, r4
+4685 // mov r13, r5
+4706 // mov r14, r6
+// loop
+0801 // add r0,  #1
+2803 // cmp r0,  #3
+dff8 // brne loop
+4000 // nop
+4000 // nop
+3800 // end

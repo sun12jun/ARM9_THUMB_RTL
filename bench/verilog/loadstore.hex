@@ -1,0 +1,9 @@
+// test_vector: load/store test
+//
+007f // mov r0,  #0x7f
+00a0 // mov r1,  #0x40
+b001 // store r0, [r1]
+a101 // load  r2, [r1]
+4000 // nop
+4000 // nop
+3800 // end

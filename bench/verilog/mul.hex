@@ -1,0 +1,12 @@
+// test_vector: muliply test
+//
+007f // mov r0, #0x7f
+0080 // mov r1, #0
+f110 // mul r2, r0, r1
+0081 // mov r1, #1
+f110 // mul r2, r0, r1
+0088 // mov r1, #8
+f110 // mul r2, r0, r1
+4000 // nop
+4000 // nop
+3800 // end
