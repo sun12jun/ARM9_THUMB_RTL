@@ -1,0 +1,466 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+ADC	ARM_THUMB_defines.v	/^`define ADC		7'd17$/;"	c
+ADD1	ARM_THUMB_defines.v	/^`define ADD1	7'd6$/;"	c
+ADD2	ARM_THUMB_defines.v	/^`define ADD2	7'd10$/;"	c
+ADD3	ARM_THUMB_defines.v	/^`define ADD3	7'd3$/;"	c
+ADD4	ARM_THUMB_defines.v	/^`define ADD4	7'd28$/;"	c
+ADD5	ARM_THUMB_defines.v	/^`define ADD5	7'd48$/;"	c
+ADD6	ARM_THUMB_defines.v	/^`define ADD6	7'd49$/;"	c
+ADD7	ARM_THUMB_defines.v	/^`define ADD7	7'd50$/;"	c
+ADDR	common/MemModel.v	/^	input	[11:0]		ADDR; $/;"	p
+AL	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+AND	ARM_THUMB_defines.v	/^`define AND		7'd12$/;"	c
+ARM_Thumb	ARM_Thumb.v	/^module ARM_Thumb ($/;"	m
+ASR1	ARM_THUMB_defines.v	/^`define ASR1	7'd2$/;"	c
+ASR2	ARM_THUMB_defines.v	/^`define ASR2	7'd16$/;"	c
+B1	ARM_THUMB_defines.v	/^`define B1		7'd57$/;"	c
+B2	ARM_THUMB_defines.v	/^`define B2		7'd58$/;"	c
+BE	common/MemModel.v	/^	input	[3:0]		BE;$/;"	p
+BIC	ARM_THUMB_defines.v	/^`define BIC		7'd26$/;"	c
+BKPT	ARM_THUMB_defines.v	/^`define BKPT	7'd54$/;"	c
+BLX	ARM_THUMB_defines.v	/^`define BLX		7'd59$/;"	c
+BL_H2	ARM_THUMB_defines.v	/^`define BL_H2	7'd60$/;"	c
+BL_H3	ARM_THUMB_defines.v	/^`define BL_H3	7'd61$/;"	c
+BR_REG_EN	ARM_THUMB_defines.v	/^`define	BR_REG_EN$/;"	c
+C	EXEv2.v	/^    wire C;                                                                                                                                                                                                       $/;"	n
+C	NZCVupdater.v	/^	wire	C;$/;"	n
+CC	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+CLK	ARM_Thumb.v	/^	input		CLK;$/;"	p
+CLK	common/MemModel.v	/^	input			CLK; $/;"	p
+CMN	ARM_THUMB_defines.v	/^`define CMN		7'd23$/;"	c
+CMP1	ARM_THUMB_defines.v	/^`define CMP1	7'd9$/;"	c
+CMP2	ARM_THUMB_defines.v	/^`define CMP2	7'd22$/;"	c
+CMP3	ARM_THUMB_defines.v	/^`define CMP3	7'd29$/;"	c
+COND	COND.v	/^module COND($/;"	m
+CS	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+CSN	common/MemModel.v	/^	input			CSN; $/;"	p
+C_new	NZCVupdater.v	/^	wire	C_new;$/;"	n
+C_shifter	EXEv2.v	/^	wire		C_shifter;$/;"	n
+C_temp_add	NZCVupdater.v	/^	wire C_temp_add;$/;"	n
+C_temp_sub	NZCVupdater.v	/^	wire C_temp_sub;$/;"	n
+DI	common/MemModel.v	/^	input	[31:0]		DI; $/;"	p
+DO	common/MemModel.v	/^	output	[31:0]		DO;$/;"	p
+EOR	ARM_THUMB_defines.v	/^`define EOR		7'd13$/;"	c
+EQ	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+EXE_DF_BUFF0_EN	ARM_Thumb.v	/^wire 			EXE_DF_BUFF0_EN;$/;"	n
+EXEv2	EXEv2.v	/^module EXEv2($/;"	m
+FWDB_REQ_E1	HAZD.v	/^	wire FWDB_REQ_E1;$/;"	n
+FWDB_REQ_E2	HAZD.v	/^	wire FWDB_REQ_E2;$/;"	n
+FWDB_REQ_M	HAZD.v	/^	wire FWDB_REQ_M;$/;"	n
+FWDC_REQ_E1	HAZD.v	/^	wire FWDC_REQ_E1;$/;"	n
+FWDC_REQ_E2	HAZD.v	/^	wire FWDC_REQ_E2;$/;"	n
+FWDC_REQ_M	HAZD.v	/^	wire FWDC_REQ_M;$/;"	n
+FWD_REQ_M_EX_EN	ARM_Thumb.v	/^wire 			FWD_REQ_M_EX_EN;$/;"	n
+FWD_REQ_M_ID_EN	ARM_Thumb.v	/^wire 			FWD_REQ_M_ID_EN;$/;"	n
+FWD_SEL_X_ID_EN	ARM_Thumb.v	/^wire 			FWD_SEL_X_ID_EN;$/;"	n
+FWD_SEL_Y_ID_EN	ARM_Thumb.v	/^wire 			FWD_SEL_Y_ID_EN;$/;"	n
+GE	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+GLOBAL_CPSR_EN	ARM_Thumb.v	/^wire 			GLOBAL_CPSR_EN;$/;"	n
+GLOBAL_INST_EN	ARM_Thumb.v	/^wire 			GLOBAL_INST_EN;$/;"	n
+GLOBAL_PC_EN	ARM_Thumb.v	/^wire 			GLOBAL_PC_EN;$/;"	n
+GT	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+HAZD	HAZD.v	/^module HAZD ($/;"	m
+HI	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+LDMIA	ARM_THUMB_defines.v	/^`define LDMIA	7'd56$/;"	c
+LDR1	ARM_THUMB_defines.v	/^`define LDR1	7'd41$/;"	c
+LDR2	ARM_THUMB_defines.v	/^`define LDR2	7'd36$/;"	c
+LDR3	ARM_THUMB_defines.v	/^`define LDR3	7'd31$/;"	c
+LDR4	ARM_THUMB_defines.v	/^`define LDR4	7'd47$/;"	c
+LDRB1	ARM_THUMB_defines.v	/^`define LDRB1	7'd43$/;"	c
+LDRB2	ARM_THUMB_defines.v	/^`define LDRB2	7'd38$/;"	c
+LDRH1	ARM_THUMB_defines.v	/^`define LDRH1	7'd45$/;"	c
+LDRH2	ARM_THUMB_defines.v	/^`define LDRH2	7'd37$/;"	c
+LDRSB	ARM_THUMB_defines.v	/^`define LDRSB	7'd35$/;"	c
+LDRSH	ARM_THUMB_defines.v	/^`define LDRSH	7'd39$/;"	c
+LE	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+LS	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+LSL1	ARM_THUMB_defines.v	/^`define LSL1	7'd0	$/;"	c
+LSL2	ARM_THUMB_defines.v	/^`define LSL2	7'd14$/;"	c
+LSR1	ARM_THUMB_defines.v	/^`define LSR1	7'd1$/;"	c
+LSR2	ARM_THUMB_defines.v	/^`define LSR2	7'd15$/;"	c
+LT	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+LatchN	common/REGISTER.v	/^module LatchN #(parameter	BITWIDTH = 1) ($/;"	m
+MEM	MEM.v	/^module MEM ($/;"	m
+MEM_W_EN_EX_EN	ARM_Thumb.v	/^wire 			MEM_W_EN_EX_EN;$/;"	n
+MEM_W_EN_ID_EN	ARM_Thumb.v	/^wire 			MEM_W_EN_ID_EN;$/;"	n
+MEM_W_LD_ST_EX_EN	ARM_Thumb.v	/^wire 			MEM_W_LD_ST_EX_EN;$/;"	n
+MEM_W_LD_ST_ID_EN	ARM_Thumb.v	/^wire 			MEM_W_LD_ST_ID_EN;$/;"	n
+MEM_W_SEL_EX_EN	ARM_Thumb.v	/^wire 			MEM_W_SEL_EX_EN;$/;"	n
+MI	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+MOV1	ARM_THUMB_defines.v	/^`define MOV1	7'd8$/;"	c
+MOV2	ARM_THUMB_defines.v	/^`define MOV2	7'd5$/;"	c
+MOV3	ARM_THUMB_defines.v	/^`define MOV3	7'd30$/;"	c
+MUL	ARM_THUMB_defines.v	/^`define MUL		7'd25	$/;"	c
+MUX10to1	common/MUX.v	/^module MUX10to1 #(parameter	BITWIDTH = 32)	($/;"	m
+MUX16to1	common/MUX.v	/^module MUX16to1 #(parameter BITWIDTH = 1)	($/;"	m
+MUX3to1	common/MUX.v	/^module MUX3to1 #(parameter	BITWIDTH = 32)	($/;"	m
+MUX4to1	common/MUX.v	/^module MUX4to1 #(parameter	BITWIDTH = 32)	($/;"	m
+MUX5to1	common/MUX.v	/^module MUX5to1 #(parameter	BITWIDTH = 32)	($/;"	m
+MUX6to1	common/MUX.v	/^module MUX6to1 #(parameter	BITWIDTH = 32)	($/;"	m
+MUX7to1	common/MUX.v	/^module MUX7to1 #(parameter	BITWIDTH = 32)	($/;"	m
+MUX8to1	common/MUX.v	/^module MUX8to1 #(parameter	BITWIDTH = 32)	($/;"	m
+MUX9to1	common/MUX.v	/^module MUX9to1 #(parameter	BITWIDTH = 32)	($/;"	m
+MVN	ARM_THUMB_defines.v	/^`define MVN		7'd27$/;"	c
+N	EXEv2.v	/^    wire N;                                                                                                                                                                                                       $/;"	n
+N	NZCVupdater.v	/^	wire	N;$/;"	n
+NE	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+NEG	ARM_THUMB_defines.v	/^`define NEG		7'd21$/;"	c
+NOP	ARM_THUMB_defines.v	/^`define NOP		7'd62$/;"	c
+NZCV_temp	EXEv2.v	/^	wire [3:0] NZCV_temp;$/;"	n
+NZCVupdater	NZCVupdater.v	/^module NZCVupdater ($/;"	m
+N_new	NZCVupdater.v	/^	wire	N_new;$/;"	n
+N_temp	NZCVupdater.v	/^	wire N_temp;$/;"	n
+OPTYPE_EX_EN	ARM_Thumb.v	/^wire 			OPTYPE_EX_EN;$/;"	n
+ORR	ARM_THUMB_defines.v	/^`define ORR		7'd24$/;"	c
+PL	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+POP	ARM_THUMB_defines.v	/^`define POP		7'd53$/;"	c
+PUSH	ARM_THUMB_defines.v	/^`define PUSH	7'd52$/;"	c
+PipeReg	common/REGISTER.v	/^module PipeReg #(parameter	BITWIDTH = 1) ($/;"	m
+PipeRegS	common/REGISTER.v	/^module PipeRegS #(parameter  BITWIDTH = 1) ($/;"	m
+RD	MEM.v	/^wire [31:0] rdData_b = {24'b0,RD[7:0]} ;$/;"	n
+RD	MEM.v	/^wire [31:0] rdData_h = {16'b0,RD[15:0]};$/;"	n
+RDOUT_BUFF0_EN	ARM_Thumb.v	/^wire			RDOUT_BUFF0_EN;$/;"	n
+RDOUT_BUFF1_EN	ARM_Thumb.v	/^wire 			RDOUT_BUFF1_EN;$/;"	n
+RD_BUFF0_EN	ARM_Thumb.v	/^wire 			RD_BUFF0_EN;$/;"	n
+RD_BUFF1_EN	ARM_Thumb.v	/^wire 			RD_BUFF1_EN;$/;"	n
+REG	common/REGISTER.v	/^module REG	#(parameter	BITWIDTH = 1) ($/;"	m
+RESET_N	ARM_Thumb.v	/^	input		RESET_N;$/;"	p
+RESULT	MEM.v	/^wire [31:0]  addr_b = {24'b0, RESULT[7:0]} ;$/;"	n
+RESULT	MEM.v	/^wire [31:0]  addr_h = {16'b0, RESULT[15:0]};$/;"	n
+RF_RA_A_ID_EN	ARM_Thumb.v	/^wire			RF_RA_A_ID_EN$/;"	n
+ROMDATA	common/MemModel.v	/^	parameter ROMDATA = "mem.hex";$/;"	c
+ROR	ARM_THUMB_defines.v	/^`define ROR		7'd19$/;"	c
+RegFile16x32	RegFile16x32.v	/^module RegFile16x32 ($/;"	m
+SBC	ARM_THUMB_defines.v	/^`define SBC		7'd18$/;"	c
+SHAMT_EN	ARM_Thumb.v	/^wire 			SHAMT_EN;$/;"	n
+SHIFTER	shifter.v	/^module SHIFTER ( $/;"	m
+SRAM	common/MemModel.v	/^module SRAM ($/;"	m
+STMIA	ARM_THUMB_defines.v	/^`define STMIA	7'd55$/;"	c
+STR1	ARM_THUMB_defines.v	/^`define STR1	7'd40$/;"	c
+STR2	ARM_THUMB_defines.v	/^`define STR2	7'd32$/;"	c
+STR3	ARM_THUMB_defines.v	/^`define STR3	7'd46$/;"	c
+STRB1	ARM_THUMB_defines.v	/^`define STRB1	7'd42$/;"	c
+STRB2	ARM_THUMB_defines.v	/^`define STRB2	7'd34$/;"	c
+STRH1	ARM_THUMB_defines.v	/^`define STRH1	7'd44$/;"	c
+STRH2	ARM_THUMB_defines.v	/^`define STRH2	7'd33$/;"	c
+SUB1	ARM_THUMB_defines.v	/^`define SUB1	7'd7$/;"	c
+SUB2	ARM_THUMB_defines.v	/^`define SUB2	7'd11$/;"	c
+SUB3	ARM_THUMB_defines.v	/^`define SUB3	7'd4$/;"	c
+SUB4	ARM_THUMB_defines.v	/^`define SUB4	7'd51$/;"	c
+SyncRegN	common/REGISTER.v	/^module SyncRegN #(parameter	BITWIDTH = 1) ($/;"	m
+TST	ARM_THUMB_defines.v	/^`define TST		7'd20$/;"	c
+TYPE_ADD	ARM_THUMB_defines.v	/^`define TYPE_ADD 5'd8$/;"	c
+TYPE_AND	ARM_THUMB_defines.v	/^`define TYPE_AND 5'd4$/;"	c
+TYPE_ASR	ARM_THUMB_defines.v	/^`define TYPE_ASR 5'd3$/;"	c
+TYPE_BIC	ARM_THUMB_defines.v	/^`define TYPE_BIC 5'd12$/;"	c
+TYPE_BL	ARM_THUMB_defines.v	/^`define TYPE_BL  5'd13 $/;"	c
+TYPE_BR	ARM_THUMB_defines.v	/^`define TYPE_BR  5'd11$/;"	c
+TYPE_EOR	ARM_THUMB_defines.v	/^`define TYPE_EOR 5'd6$/;"	c
+TYPE_LSL	ARM_THUMB_defines.v	/^`define TYPE_LSL 5'd0$/;"	c
+TYPE_LSR	ARM_THUMB_defines.v	/^`define TYPE_LSR 5'd1$/;"	c
+TYPE_MOV	ARM_THUMB_defines.v	/^`define TYPE_MOV 5'd14$/;"	c
+TYPE_MUL	ARM_THUMB_defines.v	/^`define TYPE_MUL 5'd10$/;"	c
+TYPE_NEG	ARM_THUMB_defines.v	/^`define TYPE_NEG 5'd7$/;"	c
+TYPE_NOP	ARM_THUMB_defines.v	/^`define TYPE_NOP 5'd16$/;"	c
+TYPE_NOT	ARM_THUMB_defines.v	/^`define TYPE_NOT 5'd15$/;"	c
+TYPE_OR	ARM_THUMB_defines.v	/^`define TYPE_OR  5'd5$/;"	c
+TYPE_ROR	ARM_THUMB_defines.v	/^`define TYPE_ROR 5'd2$/;"	c
+TYPE_SUB	ARM_THUMB_defines.v	/^`define TYPE_SUB 5'd9$/;"	c
+V	EXEv2.v	/^    wire V;$/;"	n
+V	NZCVupdater.v	/^	wire	V;$/;"	n
+VALIDZ_EN	ARM_Thumb.v	/^wire 			VALIDZ_EN;$/;"	n
+VALID_BUFF0_EN	ARM_Thumb.v	/^wire 			VALID_BUFF0_EN;$/;"	n
+VALID_BUFF1_EN	ARM_Thumb.v	/^wire 			VALID_BUFF1_EN;$/;"	n
+VC	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+VS	COND.v	/^	wire EQ,NE,CS,CC,MI,PL,VS,VC,HI,LS,GE,LT,GT,LE,AL;$/;"	n
+V_new	NZCVupdater.v	/^	wire	V_new;$/;"	n
+V_temp_add	NZCVupdater.v	/^	wire V_temp_add;$/;"	n
+V_temp_sub	NZCVupdater.v	/^	wire V_temp_sub;$/;"	n
+WAIT	ARM_Thumb.v	/^    reg             WAIT;$/;"	r
+WB	WB.v	/^module WB($/;"	m
+WB_A_DELAYED_EN	ARM_Thumb.v	/^wire 			WB_A_DELAYED_EN;$/;"	n
+WB_DIN_EN	ARM_Thumb.v	/^wire 			WB_DIN_EN;$/;"	n
+WB_VAL_DELAYED_EN	ARM_Thumb.v	/^wire 			WB_VAL_DELAYED_EN;$/;"	n
+WE	ARM_Thumb.v	/^    reg             WE;$/;"	r
+WE	common/MemModel.v	/^	input			WE; $/;"	p
+XY_alu	EXEv2.v	/^	wire [31:0] XY_alu;$/;"	n
+X_RESULT_EN	ARM_Thumb.v	/^wire 			X_RESULT_EN;$/;"	n
+X_alu	EXEv2.v	/^	wire [31:0] X_alu;$/;"	n
+Y_RESULT_EN	ARM_Thumb.v	/^wire 			Y_RESULT_EN;$/;"	n
+Y_alu	EXEv2.v	/^	wire [31:0] Y_alu;$/;"	n
+Z	EXEv2.v	/^    wire Z;                                                                                                                                                                                                       $/;"	n
+Z	NZCVupdater.v	/^	wire	Z;$/;"	n
+Z_RESULT_EN	ARM_Thumb.v	/^wire 			Z_RESULT_EN;$/;"	n
+Z_alu	EXEv2.v	/^	wire [31:0] Z_alu;$/;"	n
+Z_new	NZCVupdater.v	/^	wire 	Z_new;$/;"	n
+Z_shift	EXEv2.v	/^	wire [31:0] Z_shift;$/;"	n
+Z_temp	EXEv2.v	/^	wire [31:0] Z_temp;$/;"	n
+Z_temp	NZCVupdater.v	/^	wire Z_temp;$/;"	n
+addr	MEM.v	/^wire [31:0]  addr   = RESULT[31:0];$/;"	n
+addr_b	MEM.v	/^wire [31:0]  addr_b = {24'b0, RESULT[7:0]} ;$/;"	n
+addr_h	MEM.v	/^wire [31:0]  addr_h = {16'b0, RESULT[15:0]};$/;"	n
+cond	COND.v	/^	wire [3:0]  cond;$/;"	n
+cpsr_c	COND.v	/^	wire 		cpsr_c;$/;"	n
+cpsr_n	COND.v	/^	wire 		cpsr_n;$/;"	n
+cpsr_v	COND.v	/^	wire 		cpsr_v;$/;"	n
+cpsr_z	COND.v	/^	wire 		cpsr_z;$/;"	n
+daddr	ARM_Thumb.v	/^wire 	[31:0] 	daddr;	$/;"	n
+data	ARM_Thumb.v	/^    reg     [31:0]  data;$/;"	r
+din	ARM_Thumb.v	/^wire 	[31:0] 	din;$/;"	n
+din_wb	ARM_Thumb.v	/^wire 	[31:0]	din_wb;$/;"	n
+dreq	ARM_Thumb.v	/^wire			dreq;$/;"	n
+dreq_inv	ARM_Thumb.v	/^wire 			dreq_inv;	$/;"	n
+drnw	ARM_Thumb.v	/^wire			drnw;$/;"	n
+dsize	ARM_Thumb.v	/^wire 	[1:0] 	dsize;	$/;"	n
+exe_d	ARM_Thumb.v	/^wire 	[31:0]	exe_d;$/;"	n
+exe_d_mem	ARM_Thumb.v	/^wire 	[31:0]	exe_d_mem;$/;"	n
+exe_df_buff0	ARM_Thumb.v	/^wire 			exe_df_buff0;$/;"	n
+fwd_req_m	ARM_Thumb.v	/^wire 			fwd_req_m;	\/\/ need 1 stall$/;"	n
+fwd_req_m_ex	ARM_Thumb.v	/^wire 			fwd_req_m_ex;$/;"	n
+fwd_req_m_id	ARM_Thumb.v	/^wire 			fwd_req_m_id;$/;"	n
+fwd_sel_x	ARM_Thumb.v	/^wire 	[3:0] 	fwd_sel_x;	$/;"	n
+fwd_sel_x_id	ARM_Thumb.v	/^wire 	[3:0]	fwd_sel_x_id;$/;"	n
+fwd_sel_y	ARM_Thumb.v	/^wire 	[3:0] 	fwd_sel_y;	$/;"	n
+fwd_sel_y_id	ARM_Thumb.v	/^wire 	[3:0]	fwd_sel_y_id;$/;"	n
+global_cpsr	ARM_Thumb.v	/^wire 	[31:0]	global_cpsr;$/;"	n
+global_inst	ARM_Thumb.v	/^wire 	[15:0]	global_inst;$/;"	n
+global_pc	ARM_Thumb.v	/^wire 	[31:0]	global_pc;$/;"	n
+grf_x	ARM_Thumb.v	/^wire 	[31:0]	grf_x;	$/;"	n
+grf_y	ARM_Thumb.v	/^wire 	[31:0]	grf_y;$/;"	n
+grf_z	ARM_Thumb.v	/^wire 	[31:0]	grf_z;$/;"	n
+grf_z_delayed	ARM_Thumb.v	/^wire 	[31:0] 	grf_z_delayed;	$/;"	n
+grf_z_id	ARM_Thumb.v	/^wire 	[31:0]	grf_z_id;$/;"	n
+im_req_flag	ARM_Thumb.v	/^reg				im_req_flag;$/;"	r
+imm_sel_cp	ARM_Thumb.v	/^wire 	[6:0]	imm_sel_cp;$/;"	n
+instr	ARM_Thumb.v	/^    reg     [31:0]  instr;$/;"	r
+ir1	ARM_Thumb.v	/^wire 	[15:0]	ir1;$/;"	n
+ir2_fd	ARM_Thumb.v	/^wire 	[15:0]	ir2_fd;$/;"	n
+ir2_fd_EN	ARM_Thumb.v	/^wire 			ir2_fd_EN;$/;"	n
+lsr_mid0	shifter.v	/^	wire    [63:0]  lsr_mid0;$/;"	n
+lsr_mid1	shifter.v	/^    wire    [63:0]  lsr_mid1;$/;"	n
+lsr_mid2	shifter.v	/^    wire    [63:0]  lsr_mid2;$/;"	n
+lsr_mid3	shifter.v	/^    wire    [63:0]  lsr_mid3;$/;"	n
+mem_w_en	ARM_Thumb.v	/^wire 	  		mem_w_en;$/;"	n
+mem_w_en_ex	ARM_Thumb.v	/^wire 			mem_w_en_ex;	$/;"	n
+mem_w_en_id	ARM_Thumb.v	/^wire 			mem_w_en_id;	$/;"	n
+mem_w_ex	ARM_Thumb.v	/^wire 			mem_w_ex;$/;"	n
+mem_w_id	ARM_Thumb.v	/^wire 			mem_w_id;$/;"	n
+mem_w_ld_nst	ARM_Thumb.v	/^wire 	   		mem_w_ld_nst;$/;"	n
+mem_w_ld_nst_ex	ARM_Thumb.v	/^wire 			mem_w_ld_nst_ex;	$/;"	n
+mem_w_ld_st_ex	ARM_Thumb.v	/^wire 			mem_w_ld_st_ex;$/;"	n
+mem_w_ld_st_id	ARM_Thumb.v	/^wire 			mem_w_ld_st_id;$/;"	n
+mem_w_sel	ARM_Thumb.v	/^wire 	[1:0]	mem_w_sel;$/;"	n
+mem_w_sel_ex	ARM_Thumb.v	/^wire 	[1:0] 	mem_w_sel_ex;	$/;"	n
+mem_w_sel_id	ARM_Thumb.v	/^wire 	[1:0]	mem_w_sel_id;$/;"	n
+mux_ctrl	shifter.v	/^	wire	[5:0]	mux_ctrl;$/;"	n
+nzcv_updated	ARM_Thumb.v	/^wire 	[31:0]	nzcv_updated;$/;"	n
+nzcvupdate	ARM_Thumb.v	/^wire 	[3:0]	nzcvupdate;$/;"	n
+op_x	ARM_Thumb.v	/^wire 	[31:0]	op_x;	$/;"	n
+op_x_id	ARM_Thumb.v	/^wire 	[31:0]	op_x_id;$/;"	n
+op_y	ARM_Thumb.v	/^wire 	[31:0]	op_y;$/;"	n
+op_y_id	ARM_Thumb.v	/^wire 	[31:0]	op_y_id;$/;"	n
+operation_cp	ARM_Thumb.v	/^wire 	[6:0]	operation_cp;$/;"	n
+optype	ARM_Thumb.v	/^wire 	[4:0]	optype;$/;"	n
+optype_id	ARM_Thumb.v	/^wire 	[4:0]	optype_id;$/;"	n
+outline	common/MemModel.v	/^	reg	[31:0]		outline;$/;"	r
+pc1	ARM_Thumb.v	/^wire 	[31:0] 	pc1;$/;"	n
+pc2_fd	ARM_Thumb.v	/^wire 	[31:0] 	pc2_fd;$/;"	n
+pc2_fd_EN	ARM_Thumb.v	/^wire 			pc2_fd_EN;$/;"	n
+pc_offset	ARM_Thumb.v	/^wire	[31:0]	pc_offset;$/;"	n
+pc_rel_sel	ARM_Thumb.v	/^wire 	   		pc_rel_sel;$/;"	n
+pipe_inst	ARM_Thumb.v	/^wire 	[15:0] 	pipe_inst;$/;"	n
+ram	RegFile16x32.v	/^	reg		[31:0]		ram[15 : 0];$/;"	r
+ram	common/MemModel.v	/^	reg	[31:0]		ram[0 : 4095];$/;"	r
+rdData	MEM.v	/^wire [31:0] rdData   = RD[31:0];$/;"	n
+rdData_b	MEM.v	/^wire [31:0] rdData_b = {24'b0,RD[7:0]} ;$/;"	n
+rdData_h	MEM.v	/^wire [31:0] rdData_h = {16'b0,RD[15:0]};$/;"	n
+rd_addr	ARM_Thumb.v	/^wire 			rd_addr;$/;"	n
+rd_out	ARM_Thumb.v	/^wire 	[3:0]	rd_out;$/;"	n
+rd_out_delayed	ARM_Thumb.v	/^wire 	[3:0] 	rd_out_delayed;	$/;"	n
+rd_out_temp	ARM_Thumb.v	/^wire 	[3:0] 	rd_out_temp;	$/;"	n
+rdout_buff0	ARM_Thumb.v	/^wire 			rdout_buff0;$/;"	n
+rdout_buff1	ARM_Thumb.v	/^wire 			rdout_buff1;$/;"	n
+reg	ARM_Thumb.v	/^	output	reg 	DREQ;$/;"	p
+reg	ARM_Thumb.v	/^	output	reg 	DRW;$/;"	p
+reg	ARM_Thumb.v	/^	output	reg 	IREQ;$/;"	p
+reg	ARM_Thumb.v	/^	output	reg 	IRW;$/;"	p
+reg	ARM_Thumb.v	/^	output	reg     [1:0]	DSIZE;$/;"	p
+reg	ARM_Thumb.v	/^	output	reg     [31:0]	DADDR;$/;"	p
+reg	ARM_Thumb.v	/^	output	reg     [31:0]	DOUT;$/;"	p
+reg	ARM_Thumb.v	/^	output	reg     [31:0]	IADDR;$/;"	p
+reg	common/REGISTER.v	/^	output	reg		[BITWIDTH-1 : 0]	Q $/;"	p
+reg	common/REGISTER.v	/^	output	reg		[BITWIDTH-1 : 0]	Q$/;"	p
+reg	common/REGISTER.v	/^	output  reg     [BITWIDTH-1 : 0]    Q$/;"	p
+result_sel	EXEv2.v	/^	wire 		result_sel;$/;"	n
+rf_ra_a	ARM_Thumb.v	/^wire 	[3:0] 	rf_ra_a;$/;"	n
+rf_ra_a_id	ARM_Thumb.v	/^wire 	[3:0]	rf_ra_a_id;$/;"	n
+rf_ra_b	ARM_Thumb.v	/^wire 	[3:0] 	rf_ra_b;$/;"	n
+rf_ra_c	ARM_Thumb.v	/^wire 	[3:0] 	rf_ra_c;$/;"	n
+rf_wb_addr	ARM_Thumb.v	/^wire 	[3:0]	rf_wb_addr;$/;"	n
+rf_wb_data	ARM_Thumb.v	/^wire 	[31:0]	rf_wb_data;$/;"	n
+rf_wb_we	ARM_Thumb.v	/^wire 	   		rf_wb_we;$/;"	n
+rm_addr	ARM_Thumb.v	/^wire 	[3:0] 	rm_addr;	$/;"	n
+rm_sel_cp	ARM_Thumb.v	/^wire 	[2:0]	rm_sel_cp;$/;"	n
+rn_addr	ARM_Thumb.v	/^wire 	[3:0] 	rn_addr;	$/;"	n
+rn_sel_cp	ARM_Thumb.v	/^wire 	[2:0]	rn_sel_cp;	$/;"	n
+sh_dir	EXEv2.v	/^	wire 		sh_dir;$/;"	n
+sh_mux1	EXEv2.v	/^	wire		sh_mux1;$/;"	n
+sh_mux2	EXEv2.v	/^	wire [3:0]	sh_mux2;$/;"	n
+shamt	shifter.v	/^	wire [4:0]  shamt;$/;"	n
+shift_c	shifter.v	/^	wire 		shift_c;$/;"	n
+shift_in1	shifter.v	/^	wire [31:0] shift_in1;$/;"	n
+shift_in2	shifter.v	/^	wire [31:0] shift_in2;$/;"	n
+shift_out	shifter.v	/^	wire [63:0] shift_out;$/;"	n
+shiftextract	shifter.v	/^module shiftextract($/;"	m
+sht_amount	ARM_Thumb.v	/^wire 	[7:0]	sht_amount;$/;"	n
+sht_amount_id	ARM_Thumb.v	/^wire 	[7:0]	sht_amount_id;$/;"	n
+sht_amount_in	ARM_Thumb.v	/^wire 	[4:0]	sht_amount_in;$/;"	n
+sht_sel_cp	ARM_Thumb.v	/^wire 	[4:0]	sht_sel_cp;$/;"	n
+sign_ext_sel_cp	ARM_Thumb.v	/^wire 	   		sign_ext_sel_cp;$/;"	n
+tmp_rd	common/MemModel.v	/^	reg	[31:0]		tmp_rd;$/;"	r
+tmp_wd	common/MemModel.v	/^	reg	[31:0]		tmp_wd;$/;"	r
+updatetype	EXEv2.v	/^	wire [1:0] updatetype;	$/;"	n
+valid_x	ARM_Thumb.v	/^wire 	   		valid_x;$/;"	n
+valid_y	ARM_Thumb.v	/^wire 	   		valid_y;$/;"	n
+valid_z	ARM_Thumb.v	/^wire 	   		valid_z;$/;"	n
+valid_z_id	ARM_Thumb.v	/^wire 	   		valid_z_id;$/;"	n
+validrd_out	ARM_Thumb.v	/^wire 	   		validrd_out;$/;"	n
+validrd_out_delayed	ARM_Thumb.v	/^wire 			validrd_out_delayed;	$/;"	n
+validrd_out_temp	ARM_Thumb.v	/^wire 			validrd_out_temp;$/;"	n
+validz	ARM_Thumb.v	/^wire 			validz;$/;"	n
+w_valid	ARM_Thumb.v	/^wire 			w_valid;	$/;"	n
+w_valid_delayed	ARM_Thumb.v	/^wire 	   		w_valid_delayed;$/;"	n
+wb_a	ARM_Thumb.v	/^wire 	[3:0] 	wb_a;	$/;"	n
+wb_a_delayed	ARM_Thumb.v	/^wire 	[3:0]	wb_a_delayed;$/;"	n
+wb_din	ARM_Thumb.v	/^wire 			wb_din;$/;"	n
+wb_val_delayed	ARM_Thumb.v	/^wire 			wb_val_delayed;$/;"	n
+wdata	ARM_Thumb.v	/^wire 	[31:0] 	wdata;	$/;"	n
+wire	ARM_Thumb.v	/^	input	wire     [31:0]	DIN;$/;"	p
+wire	ARM_Thumb.v	/^	input	wire     [31:0]	INSTR;$/;"	p
+wire	COND.v	/^	input wire	[15:0]	IR,$/;"	p
+wire	COND.v	/^	input wire	[31:0]	CPSR,$/;"	p
+wire	COND.v	/^	output wire			COND_TRUE$/;"	p
+wire	EXEv2.v	/^	input wire		  VALIDRD_IN,$/;"	p
+wire	EXEv2.v	/^	input wire 		  XY_SEL,$/;"	p
+wire	EXEv2.v	/^	input wire [31:0] EXE_DF1,	\/\/Data forwarded from EXE$/;"	p
+wire	EXEv2.v	/^	input wire [31:0] EXE_DF2,	\/\/Data forwarded from EXE$/;"	p
+wire	EXEv2.v	/^	input wire [31:0] MEM_DF,	\/\/Data forwarded from MEM$/;"	p
+wire	EXEv2.v	/^	input wire [31:0] X,		\/\/First operend$/;"	p
+wire	EXEv2.v	/^	input wire [31:0] Y,		\/\/Second operend$/;"	p
+wire	EXEv2.v	/^	input wire [3:0]  HZ_CTRLX,	\/\/CS from hazard detection unit$/;"	p
+wire	EXEv2.v	/^	input wire [3:0]  HZ_CTRLY,$/;"	p
+wire	EXEv2.v	/^	input wire [3:0]  NZCV,		\/\/NZCV from CPSR[31:28]	$/;"	p
+wire	EXEv2.v	/^	input wire [3:0]  RD_IN,		\/\/Destination register number$/;"	p
+wire	EXEv2.v	/^	input wire [4:0]  OPTYPE,$/;"	p
+wire	EXEv2.v	/^	input wire [4:0]  SHAMT,$/;"	p
+wire	EXEv2.v	/^	output wire 		VALIDRD_OUT$/;"	p
+wire	EXEv2.v	/^	output wire [31:0]	Z_RESULT,$/;"	p
+wire	EXEv2.v	/^	output wire [3:0]	NZCVUPDATE,$/;"	p
+wire	EXEv2.v	/^	output wire [3:0]	RD_OUT,$/;"	p
+wire	HAZD.v	/^	input wire		 D_VALID_C,$/;"	p
+wire	HAZD.v	/^	input wire 		 D_VALID_B,$/;"	p
+wire	HAZD.v	/^	input wire 		 E_VALID1,$/;"	p
+wire	HAZD.v	/^	input wire 		 E_VALID2,$/;"	p
+wire	HAZD.v	/^	input wire 		 M_VALID,$/;"	p
+wire	HAZD.v	/^	input wire [3:0] D_RB,$/;"	p
+wire	HAZD.v	/^	input wire [3:0] D_RC,$/;"	p
+wire	HAZD.v	/^	input wire [3:0] E_RA1,$/;"	p
+wire	HAZD.v	/^	input wire [3:0] E_RA2,$/;"	p
+wire	HAZD.v	/^	output wire       FWD_REQ_M,$/;"	p
+wire	HAZD.v	/^	output wire [3:0] FWD_SEL_X,$/;"	p
+wire	HAZD.v	/^	output wire [3:0] FWD_SEL_Y$/;"	p
+wire	HAZD.v	/^ 	input wire [3:0] M_RA,$/;"	p
+wire	MEM.v	/^	input wire FWD_REQ_FROM_HAZD,$/;"	p
+wire	MEM.v	/^	input wire LDST, \/\/ 1:LD 0:ST$/;"	p
+wire	MEM.v	/^	input wire MEMACC, $/;"	p
+wire	MEM.v	/^	input wire [1:0] DATA_SIZE, \/\/ 01 : 8bit(B), 10 : 16bit(H), 11 : 32bit, 00 : error$/;"	p
+wire	MEM.v	/^	input wire [31:0] DIN,$/;"	p
+wire	MEM.v	/^	input wire [31:0] RD,$/;"	p
+wire	MEM.v	/^	input wire [31:0] RESULT,$/;"	p
+wire	MEM.v	/^	input wire [3:0]  RD_A,$/;"	p
+wire	MEM.v	/^	output wire DRW,$/;"	p
+wire	MEM.v	/^	output wire REQ,$/;"	p
+wire	MEM.v	/^	output wire W_VALID,$/;"	p
+wire	MEM.v	/^	output wire [1:0]DSIZE,$/;"	p
+wire	MEM.v	/^	output wire [31:0] EXE_D	$/;"	p
+wire	MEM.v	/^	output wire [31:0]DADDR,$/;"	p
+wire	MEM.v	/^	output wire [31:0]DOUT,$/;"	p
+wire	MEM.v	/^	output wire [31:0]WB_D,$/;"	p
+wire	MEM.v	/^	output wire [3:0]WB_A,$/;"	p
+wire	NZCVupdater.v	/^	input wire [1:0]  updatetype,$/;"	p
+wire	NZCVupdater.v	/^	input wire [31:0] X,$/;"	p
+wire	NZCVupdater.v	/^	input wire [31:0] Y,$/;"	p
+wire	NZCVupdater.v	/^	input wire [31:0] result,$/;"	p
+wire	NZCVupdater.v	/^	input wire [3:0]  NZCV,	$/;"	p
+wire	NZCVupdater.v	/^	output wire [3:0] NZCV_new$/;"	p
+wire	RegFile16x32.v	/^	input	wire					CLK, $/;"	p
+wire	RegFile16x32.v	/^	input	wire					WEN_A,$/;"	p
+wire	RegFile16x32.v	/^	input	wire		[31:0]		W_DA,		$/;"	p
+wire	RegFile16x32.v	/^	input	wire		[3:0]		RA_A,$/;"	p
+wire	RegFile16x32.v	/^	input	wire		[3:0]		RA_B,$/;"	p
+wire	RegFile16x32.v	/^	input	wire		[3:0]		RA_C,$/;"	p
+wire	RegFile16x32.v	/^	input	wire		[3:0]		WA_A,$/;"	p
+wire	RegFile16x32.v	/^	output	wire		[31:0]		GRF_X,$/;"	p
+wire	RegFile16x32.v	/^	output	wire		[31:0]		GRF_Y,$/;"	p
+wire	RegFile16x32.v	/^	output	wire		[31:0]		GRF_Z$/;"	p
+wire	WB.v	/^	input wire  WB_WE,$/;"	p
+wire	WB.v	/^	input wire [31:0] WB_DIN,$/;"	p
+wire	WB.v	/^	input wire [3:0] WB_RADDR,$/;"	p
+wire	WB.v	/^	output wire RF_WB_WE,$/;"	p
+wire	WB.v	/^	output wire [31:0] RF_WB_DATA$/;"	p
+wire	WB.v	/^	output wire [3:0] RF_WB_ADDR,$/;"	p
+wire	common/MUX.v	/^	input	wire	[15:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[2:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[3:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[4:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[5:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[6:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[7:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[8:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[9:0]				SEL,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI0,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI1,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI10,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI11,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI12,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI13,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI14,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI15,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI2,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI3,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI4,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI5,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI6,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI7,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI8,$/;"	p
+wire	common/MUX.v	/^	input	wire	[BITWIDTH-1:0]		DI9,$/;"	p
+wire	common/MUX.v	/^	output	wire	[BITWIDTH-1:0]		DO$/;"	p
+wire	common/REGISTER.v	/^	input	wire						CLK, $/;"	p
+wire	common/REGISTER.v	/^	input	wire						CLK,$/;"	p
+wire	common/REGISTER.v	/^	input	wire						EN,$/;"	p
+wire	common/REGISTER.v	/^	input	wire						RST,$/;"	p
+wire	common/REGISTER.v	/^	input	wire	[BITWIDTH-1 : 0]	D, $/;"	p
+wire	common/REGISTER.v	/^	input	wire	[BITWIDTH-1 : 0]	D,$/;"	p
+wire	common/REGISTER.v	/^	input   wire                        CLK,$/;"	p
+wire	common/REGISTER.v	/^	input   wire                        SET,$/;"	p
+wire	common/REGISTER.v	/^	input   wire    [BITWIDTH-1 : 0]    D,$/;"	p
+wire	shifter.v	/^	input	wire	[4:0]			SHAMT,		\/\/ Shift Amount$/;"	p
+wire	shifter.v	/^	input	wire	[63:0]			DIN, 		\/\/ Operand to be shifted$/;"	p
+wire	shifter.v	/^	input wire			DIR,$/;"	p
+wire	shifter.v	/^	input wire			MUX_CTRL1,$/;"	p
+wire	shifter.v	/^	input wire [31:0]	OPX,$/;"	p
+wire	shifter.v	/^	input wire [3:0]	MUX_CTRL2,$/;"	p
+wire	shifter.v	/^	input wire [4:0]	OPY,$/;"	p
+wire	shifter.v	/^	output	wire					COUT,		\/\/ Carry Out$/;"	p
+wire	shifter.v	/^	output	wire	[63:0]			DOUT		\/\/ Shifted Value$/;"	p
+wire	shifter.v	/^	output wire	[31:0]	DOUT$/;"	p
+wire	shifter.v	/^	output wire 		COUT,$/;"	p
+xy_sel	ARM_Thumb.v	/^wire 			xy_sel;$/;"	n
+z	ARM_Thumb.v	/^wire 	[31:0] 	z;$/;"	n
+z_delayed	ARM_Thumb.v	/^wire 	[31:0]	z_delayed;$/;"	n
+z_result	ARM_Thumb.v	/^wire 	[31:0] 	z_result;	$/;"	n

@@ -43,194 +43,204 @@ module ARM_Thumb (
 //---------------------------------------------------------------------------
 //	internal signals
 //---------------------------------------------------------------------------
+// pipeline register enable signals
 
-wire RDOUT_BUFF0_EN;
-wire RDOUT_BUFF1_EN;
-wire MEM_W_EN_EX_EN;
-wire MEM_W_SEL_EX_EN;
-wire FWD_REQ_M_EX_EN;
-wire WB_DIN_EN;
-wire WB_A_DELAYED_EN;
-wire WB_VAL_DELAYED_EN;
-wire MEM_W_LD_ST_EX_EN;
+// before fetch 
+wire			global_pc_en;
+wire			global_inst_en;
+wire			global_cpsr_en;
 
-wire VALID_BUFF1_EN;
-wire VALID_BUFF0_EN;
-wire EXE_DF_BUFF0_EN;
-wire Z_RESULT_EN;
-wire VALIDZ_EN;
-wire OPTYPE_EX_EN;
-wire SHAMT_EN;
-wire Y_RESULT_EN;
-wire X_RESULT_EN;
-wire RD_BUFF1_EN;
-wire RD_BUFF0_EN;
-wire FWD_SEL_Y_ID_EN;
-wire MEM_W_LD_ST_ID_EN;
-wire MEM_W_EN_ID_EN;
-wire RD_ADDR_EN;
-wire MEM_W_SEL_ID_EN;
-wire FWD_SEL_X_ID_EN;
-wire FWD_REQ_M_ID_EN;
-wire IR2_EN;
-wire PC2_EN;
-wire CPSR_REG_EN;
-wire PRE_INST_EN;
-wire PRE_PC_EN;
+// after fetch
+wire			pc2_fd_en;
+wire			ir2_fd_en;
 
-wire rdout_buff0;
-wire rdout_buff1;
-wire mem_w_ex;
-wire wb_din;
-wire wb_val_delayed;
-wire mem_w_ld_st_ex;
-wire validrd_out_temp;
-wire exe_df_buff0;
-wire validz;
-wire [4:0] optype_id;
-wire [7:0] sht_amount_id;
-wire [31:0] grf_z_id;
-wire mem_w_ld_st_id;
-wire mem_w_id;
-wire rd_addr;
-wire [1:0] mem_w_sel_id;
-wire fwd_req_m_id;
-wire [31:0] pc1;
-wire [31:0] pc2;
-wire [31:0] cpsr_reg;
-wire [15:0] pre_inst;
-wire [31:0] pre_pc;
+// after decode
+wire			fwd_req_m_de_en;
+wire			fwd_sel_x_de_en;
+wire			fwd_sel_y_de_en;
+wire			rf_ra_a_de_en;
+wire			mem_w_en_de_en;
+wire			mem_w_sel_de_en;
+wire			mem_w_ld_nst_de_en;
+wire			grf_z_de_en;
+wire			grf_z_de_1d_en;
+wire			op_x_de_en;
+wire			op_y_de_en;
+wire			shamt_de_en;
+wire			optype_de_en;
+wire			xy_sel_de_en;
+wire			valid_z_de_en;
+
+// after decode
+wire			z_result_em_en;
+wire			z_result_em_1d_en;
+wire			validrd_out_em_en;
+wire			validrd_out_em_1d_en;
+wire			rd_out_em_en;
+wire			rd_out_em_1d_en;
+wire			mem_w_en_em_en;
+wire			mem_w_sel_em_en;
+wire			mem_w_ld_nst_em_en;
+wire			fwd_req_m_em_en;
+
+// after mem
+wire			wb_din_mw_en;
+wire			wb_a_mw_en;
+wire			w_valid_mw_en;
+wire			exe_d_mw_en;
 
 
+// pipeline register data out signals
+// before fetch 
+wire 	[31:0]	global_pc;
+wire 	[15:0]	global_inst;
+wire 	[31:0]	global_cpsr;
 
+// after fetch
+wire 	[31:0] 	pc2_fd;
+wire 	[15:0]	ir2_fd;
 
-wire [31:0] nzcv_updated;
-wire [3:0] nzcvupdate;
-wire dreq;
-wire drnw;
+// after decode
+wire			fwd_req_m_de;
+wire 	[3:0]	fwd_sel_x_de;
+wire 	[3:0]	fwd_sel_y_de;
+wire 	[3:0]	rf_ra_a_de;
+wire			mem_w_en_de;
+wire 	[1:0]	mem_w_sel_de;
+wire			mem_w_ld_nst_de;
+wire 	[31:0]	grf_z_de;
+wire 	[31:0] 	grf_z_de_1d;	
+wire 	[31:0]	op_x_de;
+wire 	[31:0]	op_y_de;
+wire 	[7:0]	shamt_de;
+wire 	[4:0]	optype_de;
+wire			xy_sel_de;
+wire			valid_z_de;
 
-wire [31:0] exe_d;
-wire [31:0] exe_d_mem;
+// after decode
+wire 	[31:0] 	z_result_em;
+wire 	[31:0] 	z_result_em_1d;
+wire			validrd_out_em;
+wire			validrd_out_em_1d;
+wire 	[3:0] 	rd_out_em;	
+wire 	[3:0] 	rd_out_em_1d;	
+wire			mem_w_en_em;
+wire 	[1:0] 	mem_w_sel_em;	
+wire			mem_w_ld_nst_em;
+wire			fwd_req_m_em;
 
+// after mem
+wire 	[31:0]	wb_din_mw;
+wire 	[3:0]	wb_a_mw;
+wire			w_valid_mw;
+wire 	[31:0]	exe_d_mw;
 
-wire [31:0] pc_offset;
-wire [15:0] ir1;
+// ///////
 
-wire [15:0]	ir2;
-wire [31:0]	cpsr;
-wire [3:0] 	rf_ra_a;
-wire [3:0] 	rf_ra_b;
-wire [3:0] 	rf_ra_c;
-wire	pc_rel_sel;
-wire 	xy_sel;
-wire	valid_x;
-wire	valid_y;
-wire	valid_z;
-wire	mem_w_en;
-wire [1:0]	mem_w_sel;
-wire	mem_w_ld_nst;
+// IF_DP module signals
+wire 	[31:0] 	pc1;
+wire 	[15:0]	ir1;
 
-wire [31:0]	grf_x;	
-wire [31:0]	grf_y;
-wire [31:0]	grf_z;
-wire [2:0]	rn_sel_cp;	
-wire [2:0]	rm_sel_cp;
-wire [6:0]	imm_sel_cp;
-wire	sign_ext_sel_cp;
-wire [4:0]	sht_sel_cp;
-wire [6:0]	operation_cp;
-wire [31:0]	op_x;	
-wire [31:0]	op_y;
-wire [7:0]	sht_amount;
+// ID_CP module signals
+wire 	[3:0] 	rf_ra_a;
+wire 	[3:0] 	rf_ra_b;
+wire 	[3:0] 	rf_ra_c;
+wire 	   		pc_rel_sel;
+wire 	[2:0]	rn_sel_cp;	
+wire 	[2:0]	rm_sel_cp;
+wire 	[6:0]	imm_sel_cp;
+wire 	   		sign_ext_sel_cp;
+wire 	[4:0]	sht_sel_cp;
+wire 	[6:0]	operation_cp;
+wire 	[4:0]	optype;
+wire 			xy_sel;
+wire 	   		valid_x;
+wire 	   		valid_y;
+wire 	   		valid_z;
+wire 	  		mem_w_en;
+wire 	[1:0]	mem_w_sel;
+wire 	   		mem_w_ld_nst;
 
-wire [3:0] rn_addr;	
-wire [3:0] rm_addr;	
-wire [3:0] rd_out_delayed;	
-wire validrd_out_delayed;	
-wire w_valid;	
+// ID_DP module signals
+wire 	[31:0]	op_x;	
+wire 	[31:0]	op_y;
+wire 	[7:0]	sht_amount;
+wire	[31:0]	pc_offset;
 
-wire fwd_req_m;	// need 1 stall
-wire [3:0] fwd_sel_x;	
-wire [3:0] fwd_sel_y;	
+// HAZD module signals
+wire 			fwd_req_m;	// need 1 stall
+wire 	[3:0] 	fwd_sel_x;	
+wire 	[3:0] 	fwd_sel_y;	
 
+// EXEv2 module signals
+wire 	[31:0] 	z_result;	
+wire 	[3:0]	rd_out;
+wire 	[3:0]	nzcvupdate;
+wire 	   		validrd_out;
 
-wire [31:0]	op_x_id;
-wire [31:0]	op_y_id;
-wire [3:0]	rf_ra_a_id;
-wire [4:0]	sht_amount_in;
-wire [4:0]	optype;
-wire	valid_z_id;
-wire [31:0] 	z;
-wire [31:0]	z_delayed;
-wire [3:0]	fwd_sel_x_id;
-wire [3:0]	fwd_sel_y_id;
-wire [3:0]	rd_out;
-wire	validrd_out;
+// MEM module signals
+wire 			dreq_inv;	
+wire			drnw;
+wire 	[31:0] 	daddr;	
+wire 	[1:0] 	dsize;	
+wire 	[31:0] 	wdata;	
+wire 	[3:0] 	wb_a;	
+wire 			w_valid;	
+wire 	[31:0] 	din;
+wire 	[31:0]	exe_d;
 
+// WB module signals
+wire 	   		rf_wb_we;
+wire 	[3:0]	rf_wb_addr;
+wire 	[31:0]	rf_wb_data;
 
-wire mem_w_en_id;	
-wire mem_w_en_ex;	
-wire mem_w_ld_nst_ex;	
-wire [1:0] mem_w_sel_ex;	
-wire [31:0] z_result;	
-wire [3:0] rd_out_temp;	
-wire [31:0] grf_z_delayed;	
-wire fwd_req_m_ex;
-wire dreq_inv;	
-wire [31:0] daddr;	
-wire [1:0] dsize;	
-wire [31:0] wdata;	
-wire [3:0] wb_a;	
-wire [31:0] din;
+// regfile signals
+wire 	[31:0]	grf_x;	
+wire 	[31:0]	grf_y;
+wire 	[31:0]	grf_z;
 
-wire [31:0]	din_wb;
-wire	w_valid_delayed;
-wire [3:0]	wb_a_delayed;
-wire	rf_wb_we;
-wire [3:0]	rf_wb_addr;
-wire [31:0]	rf_wb_data;
-
-reg	im_req_flag;
-wire [15:0] pipe_inst;
+// IM, DM interface
+reg				im_req_flag;
+wire 	[15:0] 	pipe_inst;
+wire 	[31:0]	nzcv_updated;
+wire			dreq;
 
 //---------------------------------------------------------------------------
 //	IF stage
 //---------------------------------------------------------------------------
-PipeReg #(32) PRE_PC(
+PipeReg #(32) GLOBAL_PC(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (PRE_PC_EN),
+	.EN  (global_pc_en),
 	.D   (pc1),
-	.Q   (pre_pc)
+	.Q   (global_pc)
 );
 
 assign pipe_inst = (!im_req_flag)? instr[15:0] : instr[31:16];
 
-PipeReg # (16) PRE_INST(
+PipeReg # (16) GLOBAL_INST(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (PRE_INST_EN),
+	.EN  (global_inst_en),
 	//.D   (instr),
 	.D   (pipe_inst),
-	.Q   (pre_inst)
+	.Q   (global_inst)
 );
 
-
-
-PipeReg #(32) CPSR_REG(
+PipeReg #(32) GLOBAL_CPSR(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (CPSR_REG_EN),
+	.EN  (global_cpsr_en),
 	.D   (nzcv_updated),
-	.Q   (cpsr)
+	.Q   (global_cpsr)
 );
 
 
-assign nzcv_updated = {nzcvupdate[3:0], cpsr[27:0]};
+assign nzcv_updated = {nzcvupdate[3:0], global_cpsr[27:0]};
 
 IF_DP if_dp(
-	 .PC			(pre_pc),
-	 .INST			(pre_inst), 
+	 .PC			(global_pc),
+	 .INST			(global_inst), 
 
 	 .PC_REL_SEL	(pc_rel_sel),
 	 .PC_REL_OFFSET	(pc_offset),
@@ -243,28 +253,28 @@ IF_DP if_dp(
 //---------------------------------------------------------------------------
 //	ID stage
 //---------------------------------------------------------------------------
-PipeReg #(32) PC2(
+PipeReg #(32) PC2_FD(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (PC2_EN),
+	.EN  (pc2_fd_en),
 	.D   (pc1),
-	.Q   (pc2)
+	.Q   (pc2_fd)
 );
 
 
-PipeReg #(16) IR2(
+PipeReg #(16) IR2_FD(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (IR2_EN),
+	.EN  (ir2_fd_en),
 	.D   (ir1),
-	.Q   (ir2)
+	.Q   (ir2_fd)
 );
 
 
 ID_CP id_cp(
-	.INST			(ir2),
+	.INST			(ir2_fd),
 
-	.CPSR			(cpsr),
+	.CPSR			(global_cpsr),
 	
 	.RF_RD_ADDR		(rf_ra_a),
 	.RF_RN_ADDR		(rf_ra_b),
@@ -293,8 +303,8 @@ ID_CP id_cp(
 );
 
 ID_DP id_dp(
-	.INST			(ir2),	
-	.IF_PC			(pc2),	
+	.INST			(ir2_fd),	
+	.IF_PC			(pc2_fd),	
 
 	.RF_RN			(grf_x),	
 	.RF_RM			(grf_y),
@@ -316,15 +326,15 @@ ID_DP id_dp(
 );
 
 HAZD hazd(
-	.D_RB		(rn_addr),	
-	.D_RC		(rm_addr),	
+	.D_RB		(rf_ra_b),	
+	.D_RC		(rf_ra_c),	
 	.D_VALID_B	(valid_x),	
 	.D_VALID_C	(valid_y),	
 	
 	.E_RA1		(rd_out),	
-	.E_RA2		(rd_out_delayed),	
+	.E_RA2		(rd_out_em_1d),	
 	.E_VALID1	(validrd_out),	
-	.E_VALID2	(validrd_out_delayed),	
+	.E_VALID2	(validrd_out_em_1d),	
 	
  	.M_RA		(wb_a),	
 	.M_VALID	(w_valid),	
@@ -341,153 +351,154 @@ HAZD hazd(
 //---------------------------------------------------------------------------
 //	EX stage
 //---------------------------------------------------------------------------
-PipeReg #(1) FWD_REQ_M_ID(
+PipeReg #(1) FWD_REQ_M_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (FWD_REQ_M_ID_EN),
+	.EN  (fwd_req_m_de_en),
 	.D   (fwd_req_m),
-	.Q   (fwd_req_m_id)
+	.Q   (fwd_req_m_de)
 );
 
 
-
-PipeReg #(4) FWD_SEL_X_ID(
+PipeReg #(4) FWD_SEL_X_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (FWD_SEL_X_ID_EN),
+	.EN  (fwd_sel_x_de_en),
 	.D   (fwd_sel_x),
-	.Q   (fwd_sel_x_id)
+	.Q   (fwd_sel_x_de)
 );
 
 
-PipeReg #(4) FWD_SEL_Y_ID(
+PipeReg #(4) FWD_SEL_Y_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (FWD_SEL_Y_ID_EN),
+	.EN  (fwd_sel_y_de_en),
 	.D   (fwd_sel_y),
-	.Q   (fwd_sel_y_id)
+	.Q   (fwd_sel_y_de)
 );
 
 
-
-PipeReg #(4) RD_ADDR(
+PipeReg #(4) RF_RA_A_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (RD_ADDR_EN),
+	.EN  (rf_ra_a_de_en),
 	.D   (rf_ra_a),
-	.Q   (rf_ra_a_id)
+	.Q   (rf_ra_a_de)
 );
 
 
-
-PipeReg #(1) MEM_W_EN_ID(
+PipeReg #(1) MEM_W_EN_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (MEM_W_EN_ID_EN),
+	.EN  (mem_w_en_de_en),
 	.D   (mem_w_en),
-	.Q   (mem_w_en_id)
+	.Q   (mem_w_en_de)
 );
 
 
-PipeReg #(2) MEM_W_SEL_ID(
+PipeReg #(2) MEM_W_SEL_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (MEM_W_SEL_ID_EN),
+	.EN  (mem_w_sel_de_en),
 	.D   (mem_w_sel),
-	.Q   (mem_w_sel_id)
+	.Q   (mem_w_sel_de)
 );
 
 
-PipeReg #(1) MEM_W_LD_ST_ID(
+PipeReg #(1) MEM_W_LD_NST_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (MEM_W_LD_ST_ID_EN),
+	.EN  (mem_w_ld_nst_de_en),
 	.D   (mem_w_ld_nst),
-	.Q   (mem_w_ld_nst_id)
+	.Q   (mem_w_ld_nst_de)
 );
 
 
-PipeReg #(	 32) RD_BUFF0(
+PipeReg #(32) GRF_Z_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (RD_BUFF0_EN),
+	.EN  (grf_z_de_en),
 	.D   (grf_z),
-	.Q   (grf_z_id)
+	.Q   (grf_z_de)
 );
 
 
-PipeReg #(	 32) RD_BUFF1(
+PipeReg #(32) GRF_Z_DE_1D(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (RD_BUFF1_EN),
-	.D   (grf_z_id),
-	.Q   (grf_z_delayed)
+	.EN  (grf_z_de_1d_en),
+	.D   (grf_z_de),
+	.Q   (grf_z_de_1d)
 );
 
 
 
-PipeReg #(	 32) X_RESULT(
+PipeReg #(32) OP_X_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (X_RESULT_EN),
+	.EN  (op_x_de_en),
 	.D   (op_x),
-	.Q   (op_x_id)
+	.Q   (op_x_de)
 );
 
 
-PipeReg #(	 32) Y_RESULT(
+PipeReg #(32) OP_Y_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (Y_RESULT_EN),
+	.EN  (op_y_de_en),
 	.D   (op_y),
-	.Q   (op_y_id)
+	.Q   (op_y_de)
 );
 
 
-PipeReg #(8) SHAMT(
+PipeReg #(8) SHAMT_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (SHAMT_EN),
+	.EN  (shamt_de_en),
 	.D   (sht_amount),
-	.Q   (sht_amount_id)
+	.Q   (shamt_de)
 );
 
 
-PipeReg #(5) OPTYPE_EX(
+PipeReg #(5) OPTYPE_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (OPTYPE_EX_EN),
+	.EN  (optype_de_en),
 	.D   (optype),
-	.Q   (optype_id)
+	.Q   (optype_de)
 );
 
-
-
-PipeReg #(1) VALIDZ(
+PipeReg #(1) XY_SEL_DE(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (VALIDZ_EN),
-	.D   (valid_z),
-	.Q   (valid_z_id)
+	.EN  (xy_sel_de_en),
+	.D   (xy_sel),
+	.Q   (xy_sel_de)
 );
 
-
+PipeReg #(1) VALID_Z_DE(
+	.CLK (CLK),
+	.RST (~RESET_N),
+	.EN  (valid_z_de_en),
+	.D   (valid_z),
+	.Q   (valid_z_de)
+);
 
 EXEv2 exev2(
-	.X			(op_x_id)		,	//First operend
-	.Y			(op_y_id)		,	//Second operend
-	.RD_IN		(rf_ra_a_id)	,	//Destination register number
+	.X			(op_x_de)		,	//First operend
+	.Y			(op_y_de)		,	//Second operend
+	.RD_IN		(rf_ra_a_de)	,	//Destination register number
 	//.LR_IN		(4'd14)   ,
-	.SHAMT		(sht_amount_in)   ,
-	.OPTYPE		(optype)   ,
-	.XY_SEL		(xy_sel)   ,
-	.VALIDRD_IN	(valid_z_id)   ,
-	.NZCV		(cpsr[31:28])	,	//NZCV from CPSR[31:28]	
-	.EXE_DF1	(z)	,//Data forwarded from EXE
-	.EXE_DF2	(z_delayed)	,//Data forwarded from EXE
-	.MEM_DF		(exe_d_mem)	,//Data forwarded from MEM
-	.HZ_CTRLX	(fwd_sel_x_id)	,//CS from hazard detection unit
-	.HZ_CTRLY	(fwd_sel_y_id) ,
+	.SHAMT		(shamt_de)   ,
+	.OPTYPE		(optype_de)   ,
+	.XY_SEL		(xy_sel_de)   ,
+	.VALIDRD_IN	(valid_z_de)   ,
+	.NZCV		(global_cpsr[31:28])	,	//NZCV from CPSR Register[31:28]	
+	.EXE_DF1	(z_result_em)	,//Data forwarded from EXE
+	.EXE_DF2	(z_result_em_1d)	,//Data forwarded from EXE
+	.MEM_DF		(exe_d_mw)	,//Data forwarded from MEM
+	.HZ_CTRLX	(fwd_sel_x_de)	,//CS from hazard detection unit
+	.HZ_CTRLY	(fwd_sel_y_de) ,
                      
 	.Z_RESULT	(z_result)   ,
 //	.LR_RESULT	()	 ,//BL instruction
@@ -501,102 +512,102 @@ EXEv2 exev2(
 //	MEM stage
 //---------------------------------------------------------------------------
 
-PipeReg #(32) Z_RESULT(
+PipeReg #(32) Z_RESULT_EM(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (Z_RESULT_EN),
+	.EN  (z_result_em_en),
 	.D   (z_result),
-	.Q   (z)
+	.Q   (z_result_em)
 );
 
 
-PipeReg #(32) EXE_DF_BUFF0(
+PipeReg #(32) Z_RESULT_EM_1D(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (EXE_DF_BUFF0_EN),
-	.D   (z),
-	.Q   (z_delayed)
+	.EN  (z_result_em_1d_en),
+	.D   (z_result_em),
+	.Q   (z_result_em_1d)
 );
 
 
-PipeReg #(1) VALID_BUFF0(
+PipeReg #(1) VALIDRD_OUT_EM(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (VALID_BUFF0_EN),
+	.EN  (validrd_out_em_en),
 	.D   (validrd_out),
-	.Q   (validrd_out_temp)
+	.Q   (validrd_out_em)
 );
 
 
-PipeReg #(1) VALID_BUFF1(
+PipeReg #(1) VALIDRD_OUT_EM_1D(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (VALID_BUFF1_EN),
-	.D   (validrd_out_temp),
-	.Q   (validrd_out_delayed)
+	.EN  (validrd_out_em_1d_en),
+	.D   (validrd_out_em),
+	.Q   (validrd_out_em_1d)
 );
 
 
-PipeReg #(4) RDOUT_BUFF0(
+PipeReg #(4) RD_OUT_EM(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (RDOUT_BUFF0_EN),
+	.EN  (rd_out_em_en),
 	.D   (rd_out),
-	.Q   (rd_out_temp)
+	.Q   (rd_out_em)
 );
 
-PipeReg #(4) RDOUT_BUFF1(
+PipeReg #(4) RD_OUT_EM_1D(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (RDOUT_BUFF1_EN),
-	.D   (rd_out_temp),
-	.Q   (rd_out_delayed)
+	.EN  (rd_out_em_1d_en),
+	.D   (rd_out_em),
+	.Q   (rd_out_em_1d)
 );
 
-PipeReg #(1) MEM_W_EN_EX(
+PipeReg #(1) MEM_W_EN_EM(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (MEM_W_EN_EX_EN),
-	.D   (mem_w_en_id),
-	.Q   (mem_w_en_ex)
+	.EN  (mem_w_en_em_en),
+	.D   (mem_w_en_de),
+	.Q   (mem_w_en_em)
 );
 
-PipeReg #(2) MEM_W_SEL_EX(
+PipeReg #(2) MEM_W_SEL_EM(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (MEM_W_SEL_EX_EN),
-	.D   (mem_w_sel_id),
-	.Q   (mem_w_sel_ex)
+	.EN  (mem_w_sel_em_en),
+	.D   (mem_w_sel_de),
+	.Q   (mem_w_sel_em)
 );
 
-PipeReg #(1) MEM_W_LD_ST_EX(
+PipeReg #(1) MEM_W_LD_NST_EM(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (MEM_W_LD_ST_EX_EN),
-	.D   (mem_w_ld_nst_id),
-	.Q   (mem_w_ld_nst_ex)
+	.EN  (mem_w_ld_nst_em_en),
+	.D   (mem_w_ld_nst_de),
+	.Q   (mem_w_ld_nst_em)
 );
 
-PipeReg #(1) FWD_REQ_M_EX(
+PipeReg #(1) FWD_REQ_M_EM(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (FWD_REQ_M_EX_EN),
-	.D   (fwd_req_m_id),
-	.Q   (fwd_req_m_ex)
+	.EN  (fwd_req_m_em_en),
+	.D   (fwd_req_m_de),
+	.Q   (fwd_req_m_em)
 );
 
 
 MEM mem(
 //from EXE
-	.MEMACC		(mem_w_en_ex),	
-	.LDST		(mem_w_ld_nst_ex),	
-	.DATA_SIZE	(mem_w_sel_ex),	
+	.MEMACC		(mem_w_en_em),	
+	.LDST		(mem_w_ld_nst_em),	
+	.DATA_SIZE	(mem_w_sel_em),	
 
 	.RESULT		(z_result),	
-	.RD_A		(rd_out_temp),	
-	.RD			(grf_z_delayed),	
+	.RD_A		(rd_out_em),	
+	.RD			(grf_z_de_1d),	
 
-	.FWD_REQ_FROM_HAZD (fwd_req_m_ex),
+	.FWD_REQ_FROM_HAZD (fwd_req_m_em),
 
 	.DIN		(DOUT),	
 
@@ -617,48 +628,47 @@ MEM mem(
 assign  dreq = !dreq_inv;
 assign  drnw = !drnw;
 
-PipeReg #(32) WB_DIN(
+PipeReg #(32) WB_DIN_MW(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (WB_DIN_EN),
+	.EN  (wb_din_mw_en),
 	.D   (din),
-	.Q   (din_wb)
+	.Q   (wb_din_mw)
 );
 
 
-PipeReg #(4) WB_A_DELAYED(
+PipeReg #(4) WB_A_MW(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (WB_A_DELAYED_EN),
+	.EN  (wb_a_mw_en),
 	.D   (wb_a),
-	.Q   (wb_a_delayed)
+	.Q   (wb_a_mw)
 );
 
 
-PipeReg #(1) WB_VAL_DELAYED(
+PipeReg #(1) W_VALID_MW(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (WB_VAL_DELAYED_EN),
+	.EN  (w_valid_mw_en),
 	.D   (w_valid),
-	.Q   (w_valid_delayed)
+	.Q   (w_valid_mw)
 );
 
-PipeReg #(32) EXE_D_MEM(
+PipeReg #(32) EXE_D_MW(
 	.CLK (CLK),
 	.RST (~RESET_N),
-	.EN  (EXE_D_MEM_EN),
+	.EN  (exe_d_mw_en),
 	.D   (exe_d),
-	.Q   (exe_d_mem)
+	.Q   (exe_d_mw)
 );
-
 
 //---------------------------------------------------------------------------
 //	WB stage
 //---------------------------------------------------------------------------
 WB wb(
-	.WB_DIN			(din_wb),
-	.WB_WE			(w_valid_delayed),
-	.WB_RADDR		(wb_a_delayed),
+	.WB_DIN			(wb_din_mw),
+	.WB_WE			(w_valid_mw),
+	.WB_RADDR		(wb_a_mw),
 
 	.RF_WB_WE		(rf_wb_we),
 	.RF_WB_ADDR		(rf_wb_addr),
@@ -684,7 +694,7 @@ always @ (posedge CLK)  begin
 			if(im_req_flag) begin
 				IREQ <= 1'b1;
 				//IADDR <= IADDR + {29'b0, 3'b100};
-				IADDR <= pre_pc;
+				IADDR <= global_pc;
 				WAIT <= 1'b1;
 			end
 
