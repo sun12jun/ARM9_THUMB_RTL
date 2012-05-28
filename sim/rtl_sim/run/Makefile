@@ -33,7 +33,7 @@ _TARGETS_=	$(DUT_SRC_DIR)/common/MUX.v			\
 #
 ##########################################################################
 TB_SRC_DIR=../../../bench/verilog
-_TB_=
+_TB_=	$(TB_SRC_DIR)/tb.v
 #_TB_=		$(TB_SRC_DIR)/test_bench_top.v
 
 
@@ -47,6 +47,8 @@ INCDIR=+incdir+./$(DUT_SRC_DIR)/ +incdir+./$(TB_SRC_DIR)/
 LOGF=-l .nclog
 
 ACCESS=+access+rw
+WAVES=+define+WAVES
+VCD=
 
 ##########################################################################
 #
@@ -62,7 +64,7 @@ simw:
 
 sim:
 	ncverilog $(_TARGETS_) $(_TB_)      \
-		$(INCDIR) $(WAVES) $(ACCESS) $(LOGF) +ncstatus  \
+		$(INCDIR) $(WAVES) $(VCD) $(ACCESS) $(LOGF) +ncstatus  \
 
 gatew:
 	@$(MAKE) -s gate ACCESS="+access+r" WAVES="+define+WAVES"
@@ -75,6 +77,7 @@ gate:
 clean:
 	rm -rf	./waves/*.dsn ./waves/*.trn		\
 		INCA_libs				\
-		./verilog.* .nclog hal.log
+		./verilog.* .nclog hal.log \
+		./.simvision
 
 ##########################################################################

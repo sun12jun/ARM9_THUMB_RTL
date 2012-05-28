@@ -1,5 +1,5 @@
 
-//`define NCVERILOG 1
+`define NCVERILOG 1
 
 module arm_thumb_test();
 
@@ -9,22 +9,26 @@ module arm_thumb_test();
 	// --------------------------------------------
 	parameter DUMP_FILE = "arm_thumb_test.vcd";
 
-
-	`ifdef NCVERILOG	// ncverilog user
-	initial begin
-		$display("Dump variables..");
-		$dumpvars("AC");
-		$dumpfile(DUMP_FILE);
-		$shm_open("arm_thumb_test.shm");
-		$shm_probe("AC");
-	
-	end
-	`else			// icarus verilog user
-	initial begin
-		$display("Dump variables..");
-		$dumpfile(DUMP_FILE);
-		$dumpvars;
-	end
+	`ifdef WAVES
+		`ifdef NCVERILOG	// ncverilog user
+		initial begin
+			$display("Dump variables..");
+			`ifdef VCD
+				$dumpvars("AC");
+				$dumpfile(DUMP_FILE);
+			`else
+				$shm_open("waves");
+				$shm_probe("AC");
+			`endif
+		
+		end
+		`else			// icarus verilog user
+		initial begin
+			$display("Dump variables..");
+			$dumpfile(DUMP_FILE);
+			$dumpvars;
+		end
+		`endif
 	`endif
 
 	// --------------------------------------------
