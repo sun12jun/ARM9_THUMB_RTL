@@ -44,7 +44,7 @@ _TB_=	$(TB_SRC_DIR)/tb.v
 ##########################################################################
 
 INCDIR=+incdir+./$(DUT_SRC_DIR)/ +incdir+./$(TB_SRC_DIR)/
-LOGF=-l .nclog
+LOGF=-l nclog
 
 ACCESS=+access+rw
 WAVES=+define+WAVES
@@ -77,7 +77,7 @@ gate:
 clean:
 	rm -rf	./waves/*.dsn ./waves/*.trn		\
 		INCA_libs				\
-		./verilog.* .nclog hal.log \
+		./verilog.* nclog hal.log \
 		./.simvision
 
 ##########################################################################
