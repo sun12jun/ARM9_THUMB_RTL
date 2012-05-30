@@ -207,8 +207,7 @@ wire			dreq;
 
 wire 	stall;
 
-assign stall = (WAIT)? 1 : 0;
-//assign stall = (!IREQ)? 1 : 0;
+assign stall = (!IREQ)? 1 : 0;
 //assign global_pc_en = (!IREQ)? 0 : 1;
 
 // before fetch 
@@ -265,8 +264,7 @@ PipeReg #(32) GLOBAL_PC(
 );
 
 
-//assign pipe_inst = (global_pc[1:0]==2'b00)? instr[31:16] : instr[15:0];
-assign pipe_inst = (global_pc[1:0]==2'b00)? instr[15:0] : instr[31:16];
+assign pipe_inst = (global_pc[1:0]==2'b00)? instr[31:16] : instr[15:0];
 
 PipeReg # (16) GLOBAL_INST(
 	.CLK (CLK),

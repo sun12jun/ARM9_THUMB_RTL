@@ -1,5 +1,5 @@
 ncverilog: 08.20-p001: (c) Copyright 1995-2008 Cadence Design Systems, Inc.
-TOOL:	ncverilog	08.20-p001: Started on May 30, 2012 at 16:00:38 KST
+TOOL:	ncverilog	08.20-p001: Started on May 30, 2012 at 16:39:27 KST
 ncverilog
 	../../../rtl/verilog/common/MUX.v
 	../../../rtl/verilog/common/ADDER.v
@@ -25,186 +25,57 @@ ncverilog
 	-l
 	nclog
 	+ncstatus
+Recompiling... reason: file '/home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/rtl/verilog/ARM_Thumb.v' is newer than expected.
+	expected: Wed May 30 16:32:03 2012
+	actual:   Wed May 30 16:39:24 2012
 file: ../../../rtl/verilog/common/MUX.v
-	module worklib.MUX3to1:v
-		errors: 0, warnings: 0
-	module worklib.MUX4to1:v
-		errors: 0, warnings: 0
-	module worklib.MUX5to1:v
-		errors: 0, warnings: 0
-	module worklib.MUX6to1:v
-		errors: 0, warnings: 0
-	module worklib.MUX7to1:v
-		errors: 0, warnings: 0
-	module worklib.MUX8to1:v
-		errors: 0, warnings: 0
-	module worklib.MUX9to1:v
-		errors: 0, warnings: 0
-	module worklib.MUX10to1:v
-		errors: 0, warnings: 0
-	module worklib.MUX16to1:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/common/ADDER.v
-	module worklib.ADDER:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/common/MemModel.v
-	module worklib.SRAM:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/common/REGISTER.v
-	module worklib.REG:v
-		errors: 0, warnings: 0
-	module worklib.LatchN:v
-		errors: 0, warnings: 0
-	module worklib.SyncRegN:v
-		errors: 0, warnings: 0
-	module worklib.PipeRegS:v
-		errors: 0, warnings: 0
-	module worklib.PipeReg:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/ARM_Thumb.v
 	module worklib.ARM_Thumb:v
 		errors: 0, warnings: 0
 file: ../../../rtl/verilog/IF_DP.v
-	module worklib.IF_DP:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/ID_CP.v
-	module worklib.ID_CP:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/ID_DP.v
-	module worklib.ID_DP:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/EXEv2.v
-	module worklib.EXEv2:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/MEM.v
-	module worklib.MEM:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/WB.v
-	module worklib.WB:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/NZCVupdater.v
-	module worklib.NZCVupdater:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/shifter.v
-	module worklib.shiftextract:v
-		errors: 0, warnings: 0
-	module worklib.SHIFTER:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/RegFile16x32.v
-	module worklib.RegFile16x32:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/COND.v
-	module worklib.COND:v
-		errors: 0, warnings: 0
 file: ../../../rtl/verilog/HAZD.v
-	module worklib.HAZD:v
-		errors: 0, warnings: 0
 file: ../../../bench/verilog/tb.v
-	module worklib.arm_thumb_test:v
-		errors: 0, warnings: 0
-ncvlog: Memory Usage - 8.6M program + 8.7M data = 17.3M total
-ncvlog: CPU Usage - 0.0s system + 0.1s user = 0.1s total (0.1s, 80.6% cpu)
+ncvlog: Memory Usage - 8.6M program + 9.1M data = 17.7M total
+ncvlog: CPU Usage - 0.0s system + 0.0s user = 0.0s total (0.1s, 77.6% cpu)
 		Caching library 'worklib' ....... Done
 	Elaborating the design hierarchy:
 	.SHAMT		(shamt_de)   ,
 	      		        |
-ncelab: *W,CUVMPW (/home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/rtl/verilog/ARM_Thumb.v,538|17): port sizes differ in port connection.
+ncelab: *W,CUVMPW (/home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/rtl/verilog/ARM_Thumb.v,542|17): port sizes differ in port connection.
 	Building instance overlay tables: .................... Done
 	Generating native compiled code:
-		worklib.ADDER:v <0x4a291055>
-			streams:   2, words:   462
-		worklib.ARM_Thumb:v <0x48727ef4>
-			streams:  20, words: 12653
-		worklib.COND:v <0x1b7ce87b>
-			streams:  10, words:  5068
-		worklib.EXEv2:v <0x6b0eeea3>
-			streams:   7, words:  8276
-		worklib.HAZD:v <0x47c72461>
-			streams:   8, words:  1702
-		worklib.ID_CP:v <0x024ec269>
-			streams:  16, words: 36658
-		worklib.ID_DP:v <0x5e158c0a>
-			streams:   8, words:  1665
-		worklib.IF_DP:v <0x2682572c>
-			streams:   5, words:   760
-		worklib.LatchN:v <0x11058706>
-			streams:   2, words:   361
-		worklib.MEM:v <0x7d831170>
-			streams:  10, words:  2682
-		worklib.MUX10to1:v <0x5efe2012>
-			streams:   1, words:   784
-		worklib.MUX16to1:v <0x6b27b46f>
-			streams:   1, words:   981
-		worklib.MUX3to1:v <0x06e2708f>
-			streams:   1, words:   276
-		worklib.MUX4to1:v <0x3375693e>
-			streams:   1, words:   349
-		worklib.MUX4to1:v <0x66b6b9ce>
-			streams:   1, words:   418
-		worklib.MUX5to1:v <0x4ea494fa>
-			streams:   1, words:   424
-		worklib.MUX6to1:v <0x3c66a73f>
-			streams:   1, words:   411
-		worklib.MUX7to1:v <0x761c28b4>
-			streams:   1, words:   568
-		worklib.MUX8to1:v <0x5e1ad735>
-			streams:   1, words:   640
-		worklib.MUX9to1:v <0x05ac90bd>
-			streams:   1, words:   712
-		worklib.NZCVupdater:v <0x3b6359d9>
-			streams:  11, words:  3353
-		worklib.PipeReg:v <0x06b7f17b>
-			streams:   2, words:   472
-		worklib.PipeReg:v <0x1f52759c>
-			streams:   2, words:   472
-		worklib.PipeReg:v <0x20c42706>
-			streams:   2, words:   546
-		worklib.PipeReg:v <0x2df622f1>
-			streams:   2, words:   486
-		worklib.PipeReg:v <0x379e64e0>
-			streams:   2, words:   457
-		worklib.PipeReg:v <0x3c0113a8>
-			streams:   2, words:   487
-		worklib.PipeReg:v <0x5247c425>
-			streams:   2, words:   557
-		worklib.PipeReg:v <0x5582e944>
-			streams:   2, words:   472
-		worklib.PipeRegS:v <0x1ec258a4>
-			streams:   2, words:   506
-		worklib.REG:v <0x3b00fd6a>
-			streams:   2, words:   487
-		worklib.RegFile16x32:v <0x66d50f1c>
-			streams:   3, words:   423
-		worklib.SHIFTER:v <0x2e2498ff>
-			streams:   7, words:  4298
-		worklib.SRAM:v <0x6469f1c9>
-			streams:   3, words:  2054
-		worklib.SyncRegN:v <0x722f0c0c>
-			streams:   2, words:   298
-		worklib.WB:v <0x1e6d980c>
-			streams:   2, words:   190
-		worklib.arm_thumb_test:v <0x6082c815>
-			streams:  13, words:  3264
-		worklib.shiftextract:v <0x4f447595>
-			streams:   7, words:  1215
+		worklib.ARM_Thumb:v <0x2b983734>
+			streams:  17, words: 12025
 	Loading native compiled code:     .................... Done
 	Building instance specific data structures.
 	Design hierarchy summary:
 		                  Instances  Unique
 		Modules:                 68      30
 		Resolved nets:            0       3
-		Registers:               65      28
+		Registers:               63      26
 		Scalar wires:           224       -
 		Expanded wires:         360       8
 		Vectored wires:         168       -
-		Always blocks:           45      11
+		Always blocks:           44      10
 		Initial blocks:           5       4
 		Cont. assignments:      107     225
 		Pseudo assignments:      19      19
 		Simulation timescale:  10ps
 	Writing initial simulation snapshot: worklib.MUX8to1:v
-ncelab: Memory Usage - 18.7M program + 13.8M data = 32.5M total
-ncelab: CPU Usage - 0.0s system + 0.2s user = 0.2s total (0.2s, 94.4% cpu)
+ncelab: Memory Usage - 18.7M program + 16.4M data = 35.1M total
+ncelab: CPU Usage - 0.0s system + 0.1s user = 0.1s total (0.1s, 91.7% cpu)
 Loading snapshot worklib.MUX8to1:v .................... Done
 ncsim> source /tools/cadence/ius/tools/inca/files/ncsimrc
 ncsim> run
@@ -213,5 +84,5 @@ Simulation complete via $finish(1) at time 10 US + 0
 /home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/bench/verilog/tb.v:41 		#(CLK_PER * NUM_CLK); $finish;
 ncsim> exit
 ncsim: Memory Usage - 16.1M program + 16.3M data = 32.4M total
-ncsim: CPU Usage - 0.0s system + 0.1s user = 0.1s total (1.4s, 8.3% cpu)
-TOOL:	ncverilog	08.20-p001: Exiting on May 30, 2012 at 16:00:40 KST  (total: 00:00:02)
+ncsim: CPU Usage - 0.0s system + 0.1s user = 0.1s total (1.4s, 7.6% cpu)
+TOOL:	ncverilog	08.20-p001: Exiting on May 30, 2012 at 16:39:29 KST  (total: 00:00:02)
