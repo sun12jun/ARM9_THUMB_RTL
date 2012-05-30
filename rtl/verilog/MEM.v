@@ -4,6 +4,8 @@ module MEM (
 	input wire LDST, // 1:LD 0:ST
 	input wire [1:0] DATA_SIZE, // 01 : 8bit(B), 10 : 16bit(H), 11 : 32bit, 00 : error
 
+	input wire RF_OP,
+
 	input wire [31:0] RESULT,
 	input wire [3:0]  RD_A,
 	input wire [31:0] RD,
@@ -43,9 +45,13 @@ assign DADDR = (DATA_SIZE == 2'b01)? addr_b : ((DATA_SIZE == 2'b10)? addr_h : ad
 assign DOUT  = (DATA_SIZE == 2'b01)? rdData_b : ((DATA_SIZE == 2'b10)? rdData_h : rdData); 
 assign DSIZE = DATA_SIZE;
 
-assign WB_A 	= (LDST == 1)? RD_A : 4'b1111;
-assign W_VALID  = (LDST == 1)? 1	: 0;
-assign WB_D 	= (LDST == 1)? DIN 	: 31'b0;
+assign WB_A 	= RD_A;
+assign WB_D 	= (RF_OP)? RESULT:DIN;
+assign W_VALID  = (RF_OP)? 1: 0;
+
+//assign WB_A 	= (LDST == 1)? RD_A : 4'b1111;
+//assign W_VALID  = (LDST == 1)? 1	: 0;
+//assign WB_D 	= (LDST == 1)? DIN 	: 31'b0;
 
 assign EXE_D	= (FWD_REQ_FROM_HAZD)? DIN 	: 31'b0;
 

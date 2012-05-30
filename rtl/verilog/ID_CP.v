@@ -53,6 +53,7 @@ module ID_CP(
 	output wire	[4:0]	SHT_SEL_CP,
 
 	output wire	[6:0]	OPERATION_CP, 
+	output wire			RF_OP_CP,
 
 	//---------------------------------------------------------------------------
 	//	output control signals(for execution)
@@ -92,7 +93,7 @@ wire	[4:0]	rm_addr;
 wire	[4:0]	rd_addr;
 wire	[4:0]	rs_addr;
 
-wire	[7:0]	opkind;
+wire	[8:0]	opkind;
 wire			pc_op;
 wire		 	sp_op;
 wire		 	br_al_op;
@@ -101,6 +102,7 @@ wire		 	rd_op;
 wire		 	ld_op;	
 wire		 	st_op;	
 wire		 	ld_st_op; 
+wire			logic_op;
 
 wire			br_cond_true;
 
@@ -109,26 +111,51 @@ wire			br_cond_true;
 //-------------------------------------------------------------------------------
 assign opidx0 = INST[15:13];
 
-assign opidx1a = (opidx0==3'd0)? INST[12:11] : 7'd0;
-assign opidx1a = (opidx0==3'd1)? INST[12:11] : 7'd0;
+assign opidx1a = (opidx0==3'd0)? {5'd0, INST[12:11]} : 
+				(opidx0==3'd1)? {5'd0, INST[12:11]} : 
+				(opidx0==3'd2)? INST[12:6]	 :
+				(opidx0==3'd3)? {5'd0, INST[12:11]} :
+				(opidx0==3'd4)? {5'd0, INST[12:11]} :
+				(opidx0==3'd5)? {5'd0, INST[12:11]} :
+				(opidx0==3'd6)? {5'd0, INST[12:11]} :
+				(opidx0==3'd7)? {5'd0, INST[12:11]} : 7'd0;
+
+assign opidx1b = (opidx0==3'd0)? {3'd0, INST[12:9]} :
+(opidx0==3'd2)? {2'd0, INST[12:8]} :
+(opidx0==3'd5)? {1'd0, INST[12:7]} :
+(opidx0==3'd6)? {6'd0, INST[12]} : 7'd0;
+
+assign opidx1c = (opidx0==3'd2)? {5'd0, INST[12:11]} :
+(opidx0==3'd5)? {3'd0, INST[12:9]} : 7'd0;
+
+assign opidx1d = (opidx0==3'd2)? {3'd0, INST[12:9]} : 7'd0;
+
+assign opidx2 = (opidx0==3'd0)? {4'd0, INST[8:6]} : 7'd0;
+
+
+/*
+assign opidx1a = (opidx0==3'd0)? {5'd0, INST[12:11]} : 7'd0;
+assign opidx1a = (opidx0==3'd1)? {5'd0, INST[12:11]} : 7'd0;
 assign opidx1a = (opidx0==3'd2)? INST[12:6]	 : 7'd0;
-assign opidx1a = (opidx0==3'd3)? INST[12:11] : 7'd0;
-assign opidx1a = (opidx0==3'd4)? INST[12:11] : 7'd0;
-assign opidx1a = (opidx0==3'd5)? INST[12:11] : 7'd0;
-assign opidx1a = (opidx0==3'd6)? INST[12:11] : 7'd0;
-assign opidx1a = (opidx0==3'd7)? INST[12:11] : 7'd0;
+assign opidx1a = (opidx0==3'd3)? {5'd0, INST[12:11]} : 7'd0;
+assign opidx1a = (opidx0==3'd4)? {5'd0, INST[12:11]} : 7'd0;
+assign opidx1a = (opidx0==3'd5)? {5'd0, INST[12:11]} : 7'd0;
+assign opidx1a = (opidx0==3'd6)? {5'd0, INST[12:11]} : 7'd0;
+assign opidx1a = (opidx0==3'd7)? {5'd0, INST[12:11]} : 7'd0;
 
-assign opidx1b = (opidx0==3'd0)? INST[12:9] : 7'd0;
-assign opidx1b = (opidx0==3'd2)? INST[12:8] : 7'd0;
-assign opidx1b = (opidx0==3'd5)? INST[12:7] : 7'd0;
-assign opidx1b = (opidx0==3'd6)? INST[12] : 7'd0;
+assign opidx1b = (opidx0==3'd0)? {3'd0, INST[12:9]} : 7'd0;
+assign opidx1b = (opidx0==3'd2)? {2'd0, INST[12:8]} : 7'd0;
+assign opidx1b = (opidx0==3'd5)? {1'd0, INST[12:7]} : 7'd0;
+assign opidx1b = (opidx0==3'd6)? {6'd0, INST[12]} : 7'd0;
 
-assign opidx1c = (opidx0==3'd2)? INST[12:11] : 7'd0;
-assign opidx1c = (opidx0==3'd5)? INST[12:9] : 7'd0;
+assign opidx1c = (opidx0==3'd2)? {5'd0, INST[12:11]} : 7'd0;
+assign opidx1c = (opidx0==3'd5)? {3'd0, INST[12:9]} : 7'd0;
 
-assign opidx1d = (opidx0==3'd2)? INST[12:9] : 7'd0;
+assign opidx1d = (opidx0==3'd2)? {3'd0, INST[12:9]} : 7'd0;
 
-assign opidx2 = (opidx0==3'd0)? INST[8:6] : 7'd0;
+assign opidx2 = (opidx0==3'd0)? {4'd0, INST[8:6]} : 7'd0;
+
+*/
 
 assign operation = ( (opidx0==3'd0) && (opidx1a==7'h0) )?					 `LSL1 : 
 				   ( (opidx0==3'd0) && (opidx1a==7'h1) )?					 `LSR1 : 
@@ -269,19 +296,25 @@ assign ld_op	= ( (operation==`LDRB1) || (operation==`LDRB2) || (operation==`LDRS
 assign st_op	= ( (operation==`STRB1) || (operation==`STRB2) || (operation==`STRH1) ||
 					(operation==`STRH2) || (operation==`STR1)  || (operation==`STR2)  ||
 					(operation==`STR3) )? 						                        1'b1: 1'b0;
+assign logic_op = ( (operation==`TST) ||
+					(operation==`CMP1) ||
+					(operation==`CMP2) ||
+					(operation==`CMP3) ||
+					(operation==`CMN) )? 1'b1: 1'b0;
 
 assign ld_st_op = (ld_op || st_op);
 
-assign opkind = {pc_op, sp_op, br_al_op, br_con_op, rd_op, ld_op, st_op, ld_st_op};
+assign rs_op = ( (operation==`LSL2) || (operation==`LSR2) || (operation==`ASR2) || (operation==`ROR) );
+
+assign opkind = {pc_op, sp_op, br_al_op, br_con_op, rd_op, ld_op, st_op, ld_st_op, rs_op};
 
 //assign RF_RD_ADDR = (rd_addr != `ADDR_NONE)? rd_addr[3:0] : 4'd0;
-//assign RF_RN_ADDR = (rn_addr != `ADDR_NONE)? rn_addr[3:0] : 4'd0;
+//assign RF_RN_ADDR = ( (rn_addr != `ADDR_NONE) && sp_op )? 4'd13 : rn_addr[3:0];
 //assign RF_RM_ADDR = ( (rs_addr != `ADDR_NONE) && (rn_addr==`ADDR_NONE) && (rm_addr==`ADDR_NONE) )? rs_addr[3:0] : rm_addr[3:0];
 
-assign RF_RD_ADDR = (rd_addr != `ADDR_NONE)? rd_addr[3:0] : 4'd0;
-assign RF_RN_ADDR = ( (rn_addr != `ADDR_NONE) && sp_op )? 4'd13 : rn_addr[3:0];
-assign RF_RM_ADDR = ( (rs_addr != `ADDR_NONE) && (rn_addr==`ADDR_NONE) && (rm_addr==`ADDR_NONE) )? rs_addr[3:0] : rm_addr[3:0];
-
+assign RF_RD_ADDR = rd_addr[3:0];
+assign RF_RN_ADDR = ( sp_op )? 4'd13 : rn_addr[3:0];
+assign RF_RM_ADDR = ( rs_op )? rs_addr[3:0] : rm_addr[3:0];
 //-------------------------------------------------------------------------------
 //	make selection signals
 //-------------------------------------------------------------------------------
@@ -362,9 +395,11 @@ COND BR_COND(
 	.COND_TRUE	(br_cond_true)
 );
 
+assign RF_OP_CP = ( (logic_op) || (st_op) || (br_al_op) || (br_con_op) )? 1'b0: 1'b1;
 
 assign OPERATION_CP = operation;
-assign PC_REL_SEL = ( (br_cond_true && br_con_op) || br_al_op );
+assign PC_REL_SEL = ( (br_cond_true && br_con_op) || br_al_op )? 1'b1 : 1'b0;
+//assign PC_REL_SEL = 1'b0;
 
 assign XY_SEL = (operation==`MOV1 || operation==`MOV3 || operation==`LSL1 || operation==`LSR1 || operation==`ASR1 )? 1'b1 :
 				(operation==`MOV2 || operation==`LSL2 || operation==`LSR2 || operation==`ASR2 || operation==`ROR )? 1'b0 : 1'b0; 

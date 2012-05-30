@@ -32,6 +32,7 @@ module IF_DP(
 	//---------------------------------------------------------------------------
 	//	Next PC, fetched instruction
 	//---------------------------------------------------------------------------
+	output wire [31:0] NPC,
 	output wire [31:0] IF_PC,
 	output wire [15:0] FINST
 );
@@ -70,7 +71,8 @@ ADDER #(32) uAdder(
 // PC value MUX, absolute or relative(branch), normal incremented value
 assign npc = (PC_REL_SEL)? pc_rel : pc_inc;
 
-assign IF_PC = npc;
+assign NPC = npc;
+assign IF_PC = PC;
 assign FINST = (PC_REL_SEL)? 16'd0 : INST;
 
 endmodule

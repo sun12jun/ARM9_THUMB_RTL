@@ -11,7 +11,6 @@ SHELL = /bin/sh
 DUT_SRC_DIR=../../../rtl/verilog
 _TARGETS_=	$(DUT_SRC_DIR)/common/MUX.v			\
 			$(DUT_SRC_DIR)/common/ADDER.v		\
-			$(DUT_SRC_DIR)/common/MemModel.v 	\
 			$(DUT_SRC_DIR)/common/REGISTER.v	\
 			$(DUT_SRC_DIR)/ARM_Thumb.v			\
 			$(DUT_SRC_DIR)/IF_DP.v				\
@@ -33,7 +32,8 @@ _TARGETS_=	$(DUT_SRC_DIR)/common/MUX.v			\
 #
 ##########################################################################
 TB_SRC_DIR=../../../bench/verilog
-_TB_=	$(TB_SRC_DIR)/tb.v
+_TB_=	$(TB_SRC_DIR)/MemModel.v	\
+		$(TB_SRC_DIR)/tb.v
 #_TB_=		$(TB_SRC_DIR)/test_bench_top.v
 
 

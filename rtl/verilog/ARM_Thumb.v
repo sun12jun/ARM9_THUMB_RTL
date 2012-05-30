@@ -35,7 +35,8 @@ module ARM_Thumb (
 	input	wire     [31:0]	DIN;
 	output	reg     [31:0]	DOUT;
 
-    reg     [31:0]  instr;
+    //reg     [31:0]  instr;
+    wire     [31:0]  instr;
     reg     [31:0]  data;
     reg             WE;
     reg             WAIT;
@@ -200,19 +201,20 @@ wire 	[31:0]	grf_y;
 wire 	[31:0]	grf_z;
 
 // IM, DM interface
-reg				im_req_flag;
 wire 	[15:0] 	pipe_inst;
 wire 	[31:0]	nzcv_updated;
 wire			dreq;
 
+wire rf_op;
 wire 	stall;
+wire 	pc_stall;
 
-assign stall = (WAIT)? 1 : 0;
-//assign stall = (!IREQ)? 1 : 0;
-//assign global_pc_en = (!IREQ)? 0 : 1;
+assign stall = 0;
+
+assign pc_stall = (IREQ && !WAIT)? 1 : 0;
 
 // before fetch 
-assign	global_pc_en 			= (stall)? 0 : 1;
+assign	global_pc_en 			= (pc_stall)? 0 : 1;
 assign	global_inst_en			= (stall)? 0 : 1;	
 assign	global_cpsr_en			= (stall)? 0 : 1;
 // after fetch
@@ -251,7 +253,19 @@ assign	wb_a_mw_en				= (stall)? 0: 1;
 assign	w_valid_mw_en			= (stall)? 0: 1;
 assign	exe_d_mw_en				= (stall)? 0: 1;
 
+reg [31:0] IADDR_tmp;
+reg	[31:0] pc_tmp_d0;
 
+wire rf_op_cp_em_en;
+wire rf_op_cp_de_en;
+
+wire rf_op_de;
+wire rf_op_em;
+
+assign rf_op_cp_em_en = (stall)? 0 : 1;
+assign rf_op_cp_de_en = (stall)? 0 : 1;
+
+reg [31:0] pc_tmp;
 
 //---------------------------------------------------------------------------
 //	IF stage
@@ -260,22 +274,15 @@ PipeReg #(32) GLOBAL_PC(
 	.CLK (CLK),
 	.RST (~RESET_N),
 	.EN  (global_pc_en),
-	.D   (pc1),
+	//.D   (pc1),
+	//.D   (pc_tmp_d0),
+	.D   (pc_tmp),
 	.Q   (global_pc)
 );
 
 
 //assign pipe_inst = (global_pc[1:0]==2'b00)? instr[31:16] : instr[15:0];
 assign pipe_inst = (global_pc[1:0]==2'b00)? instr[15:0] : instr[31:16];
-
-PipeReg # (16) GLOBAL_INST(
-	.CLK (CLK),
-	.RST (~RESET_N),
-	.EN  (global_inst_en),
-	//.D   (instr),
-	.D   (pipe_inst),
-	.Q   (global_inst)
-);
 
 PipeReg #(32) GLOBAL_CPSR(
 	.CLK (CLK),
@@ -285,16 +292,19 @@ PipeReg #(32) GLOBAL_CPSR(
 	.Q   (global_cpsr)
 );
 
+wire [31:0] npc;
 
 assign nzcv_updated = {nzcvupdate[3:0], global_cpsr[27:0]};
 
 IF_DP if_dp(
 	 .PC			(global_pc),
-	 .INST			(global_inst), 
+	 //.INST			(global_inst), 
+	 .INST			(pipe_inst), 
 
 	 .PC_REL_SEL	(pc_rel_sel),
 	 .PC_REL_OFFSET	(pc_offset),
 
+	 .NPC			(npc),
 	 .IF_PC			(pc1),
 	 .FINST			(ir1)
 );
@@ -339,6 +349,7 @@ ID_CP id_cp(
 	.SHT_SEL_CP		(sht_sel_cp),
 
 	.OPERATION_CP	(operation_cp),
+	.RF_OP_CP		(rf_op),
 
 	.OPTYPE			(optype),
 	.XY_SEL			(xy_sel),
@@ -534,6 +545,14 @@ PipeReg #(1) VALID_Z_DE(
 	.Q   (valid_z_de)
 );
 
+PipeReg #(1) RF_OP_CP_DE(
+	.CLK (CLK),
+	.RST (~RESET_N),
+	.EN  (rf_op_cp_de_en),
+	.D   (rf_op),
+	.Q   (rf_op_de)
+);
+
 EXEv2 exev2(
 	.X			(op_x_de)		,	//First operend
 	.Y			(op_y_de)		,	//Second operend
@@ -646,6 +665,13 @@ PipeReg #(1) FWD_REQ_M_EM(
 	.Q   (fwd_req_m_em)
 );
 
+PipeReg #(1) RF_OP_CP_EM(
+	.CLK (CLK),
+	.RST (~RESET_N),
+	.EN  (rf_op_cp_em_en),
+	.D   (rf_op_de),
+	.Q   (rf_op_em)
+);
 
 MEM mem(
 //from EXE
@@ -653,7 +679,10 @@ MEM mem(
 	.LDST		(mem_w_ld_nst_em),	
 	.DATA_SIZE	(mem_w_sel_em),	
 
-	.RESULT		(z_result),	
+	.RF_OP		(rf_op_em),	
+
+	//.RESULT		(z_result),	
+	.RESULT		(z_result_em),	
 	.RD_A		(rd_out_em),	
 	.RD			(grf_z_de_1d),	
 
@@ -728,38 +757,50 @@ WB wb(
 //---------------------------------------------------------------------------
 //	IM, DM Memory access
 //---------------------------------------------------------------------------
-
 // Read from Instruction Memory
 always @ (posedge CLK)  begin
     if(~RESET_N)    begin
-        instr <= 32'b0;
+        //instr <= 32'b0;
         IREQ <= 1'b0;
         IADDR <= 32'b0;
         WAIT <= 1'b0;
         WE <= 1'b0;
-		im_req_flag <= 1'b0;
+
+		IADDR_tmp <= 32'd0;
+		pc_tmp <= 32'd0;
+		pc_tmp_d0 <= 32'd0;
+
     end 
     else    begin
         if(~IREQ)    begin
 			//IREQ <= 1'b1;
 			//IADDR <= IADDR + {29'b0, 3'b100};
-			//IADDR <= global_pc;
-			IADDR <= global_pc;
+			IADDR <= IADDR_tmp;
+			IADDR_tmp <= IADDR_tmp + {29'b0, 3'b100};
 			WAIT <= 1'b1;
 			IREQ <= 1'b1;
+
+
         end
-        else if(IREQ && WAIT)   begin
-            WAIT <= 1'b0;
-        end
+       // else if(IREQ && WAIT)   begin
+       //     WAIT <= 1'b0;
+       // end
         else    begin
-            instr <= INSTR;
+
+            //instr <= INSTR;
             IREQ <= 1'b0;
             WE <= 1'b1;
-            #1;
+            //#1;
         end
+
+			pc_tmp_d0 <= pc_tmp_d0 + 32'd2;
+			pc_tmp <= pc_tmp_d0;
+			//pc_tmp_d0 <= IADDR_tmp;
     end
 
 end
+
+assign instr = INSTR;
 
 //Write to Data Memory
 always @ (posedge CLK)  begin
@@ -793,7 +834,8 @@ end
 
 RegFile16x32 regfile(
 	.CLK	(CLK),	 
-	.WEN_A	(rf_wb_we),
+	.RST	(~RESET_N),	 
+	.WEN_A	(!rf_wb_we),
 	//.WEN_B	( ),	
 	.W_DA	(rf_wb_data),	
 	//.W_DB	( ),	

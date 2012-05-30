@@ -1,0 +1,143 @@
+
+data_proc:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <_reset>:
+   0:	2000      	movs	r0, #0
+   2:	2100      	movs	r1, #0
+   4:	2200      	movs	r2, #0
+   6:	2300      	movs	r3, #0
+   8:	2400      	movs	r4, #0
+   a:	2500      	movs	r5, #0
+   c:	2600      	movs	r6, #0
+   e:	2700      	movs	r7, #0
+
+00000010 <_main_start>:
+  10:	2012      	movs	r0, #18
+  12:	21f0      	movs	r1, #240	; 0xf0
+  14:	220f      	movs	r2, #15
+  16:	2334      	movs	r3, #52	; 0x34
+  18:	4008      	ands	r0, r1
+  1a:	4013      	ands	r3, r2
+  1c:	2012      	movs	r0, #18
+  1e:	21ff      	movs	r1, #255	; 0xff
+  20:	2334      	movs	r3, #52	; 0x34
+  22:	1fc2      	subs	r2, r0, #7
+  24:	1aca      	subs	r2, r1, r3
+  26:	25f0      	movs	r5, #240	; 0xf0
+  28:	46ad      	mov	sp, r5
+  2a:	b0bc      	sub	sp, #240	; 0xf0
+  2c:	2012      	movs	r0, #18
+  2e:	21ff      	movs	r1, #255	; 0xff
+  30:	2334      	movs	r3, #52	; 0x34
+  32:	2400      	movs	r4, #0
+  34:	46a0      	mov	r8, r4
+  36:	1dc2      	adds	r2, r0, #7
+  38:	34f0      	adds	r4, #240	; 0xf0
+  3a:	18c2      	adds	r2, r0, r3
+  3c:	4480      	add	r8, r0
+  3e:	a23c      	add	r2, pc, #240	; (adr r2, 130 <__exidx_end+0x24>)
+  40:	aa3c      	add	r2, sp, #240	; 0xf0
+  42:	2500      	movs	r5, #0
+  44:	46ad      	mov	sp, r5
+  46:	b03c      	add	sp, #240	; 0xf0
+  48:	b0bc      	sub	sp, #240	; 0xf0
+  4a:	f000 e84e 	blx	e8 <_set_cflag>
+  4e:	2012      	movs	r0, #18
+  50:	2200      	movs	r2, #0
+  52:	4142      	adcs	r2, r0
+  54:	f000 e852 	blx	fc <_reset_cflag>
+  58:	2000      	movs	r0, #0
+  5a:	f000 e846 	blx	e8 <_set_cflag>
+  5e:	2000      	movs	r0, #0
+  60:	2212      	movs	r2, #18
+  62:	4182      	sbcs	r2, r0
+  64:	f000 e84a 	blx	fc <_reset_cflag>
+  68:	25ff      	movs	r5, #255	; 0xff
+  6a:	0628      	lsls	r0, r5, #24
+  6c:	2580      	movs	r5, #128	; 0x80
+  6e:	062a      	lsls	r2, r5, #24
+  70:	4210      	tst	r0, r2
+  72:	4208      	tst	r0, r1
+  74:	f000 e842 	blx	fc <_reset_cflag>
+  78:	2001      	movs	r0, #1
+  7a:	2102      	movs	r1, #2
+  7c:	2203      	movs	r2, #3
+  7e:	4689      	mov	r9, r1
+  80:	4692      	mov	sl, r2
+  82:	2802      	cmp	r0, #2
+  84:	4291      	cmp	r1, r2
+  86:	45d1      	cmp	r9, sl
+  88:	f000 e838 	blx	fc <_reset_cflag>
+  8c:	25ff      	movs	r5, #255	; 0xff
+  8e:	0628      	lsls	r0, r5, #24
+  90:	2100      	movs	r1, #0
+  92:	2580      	movs	r5, #128	; 0x80
+  94:	062a      	lsls	r2, r5, #24
+  96:	42d0      	cmn	r0, r2
+  98:	42d1      	cmn	r1, r2
+  9a:	42c9      	cmn	r1, r1
+  9c:	2012      	movs	r0, #18
+  9e:	2118      	movs	r1, #24
+  a0:	0602      	lsls	r2, r0, #24
+  a2:	4088      	lsls	r0, r1
+  a4:	2012      	movs	r0, #18
+  a6:	2308      	movs	r3, #8
+  a8:	4098      	lsls	r0, r3
+  aa:	2108      	movs	r1, #8
+  ac:	0a02      	lsrs	r2, r0, #8
+  ae:	40c8      	lsrs	r0, r1
+  b0:	20ff      	movs	r0, #255	; 0xff
+  b2:	2108      	movs	r1, #8
+  b4:	41c8      	rors	r0, r1
+  b6:	20ff      	movs	r0, #255	; 0xff
+  b8:	0200      	lsls	r0, r0, #8
+  ba:	0200      	lsls	r0, r0, #8
+  bc:	0200      	lsls	r0, r0, #8
+  be:	2108      	movs	r1, #8
+  c0:	1202      	asrs	r2, r0, #8
+  c2:	4108      	asrs	r0, r1
+  c4:	2012      	movs	r0, #18
+  c6:	21f0      	movs	r1, #240	; 0xf0
+  c8:	4388      	bics	r0, r1
+  ca:	2012      	movs	r0, #18
+  cc:	21f0      	movs	r1, #240	; 0xf0
+  ce:	4048      	eors	r0, r1
+  d0:	2034      	movs	r0, #52	; 0x34
+  d2:	2112      	movs	r1, #18
+  d4:	2208      	movs	r2, #8
+  d6:	4091      	lsls	r1, r2
+  d8:	4308      	orrs	r0, r1
+  da:	f000 e810 	blx	fc <_reset_cflag>
+  de:	2000      	movs	r0, #0
+  e0:	2101      	movs	r1, #1
+  e2:	22ff      	movs	r2, #255	; 0xff
+  e4:	4243      	negs	r3, r0
+  e6:	424b      	negs	r3, r1
+
+000000e8 <_set_cflag>:
+  e8:	e10f4000 	mrs	r4, CPSR
+  ec:	e3c4420f 	bic	r4, r4, #-268435456	; 0xf0000000
+  f0:	e3844202 	orr	r4, r4, #536870912	; 0x20000000
+  f4:	e128f004 	msr	CPSR_f, r4
+  f8:	e12fff1e 	bx	lr
+
+000000fc <_reset_cflag>:
+  fc:	e10f4000 	mrs	r4, CPSR
+ 100:	e3c4420f 	bic	r4, r4, #-268435456	; 0xf0000000
+ 104:	e128f004 	msr	CPSR_f, r4
+ 108:	e12fff1e 	bx	lr
+
+Disassembly of section .ARM.attributes:
+
+00000000 <.ARM.attributes>:
+   0:	00001941 	andeq	r1, r0, r1, asr #18
+   4:	61656100 	cmnvs	r5, r0, lsl #2
+   8:	01006962 	tsteq	r0, r2, ror #18
+   c:	0000000f 	andeq	r0, r0, pc
+  10:	00543505 	subseq	r3, r4, r5, lsl #10
+  14:	01080306 	tsteq	r8, r6, lsl #6
+  18:	Address 0x00000018 is out of bounds.
+

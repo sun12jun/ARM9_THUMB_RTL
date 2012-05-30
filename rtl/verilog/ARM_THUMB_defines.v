@@ -3,7 +3,8 @@
 
 `define	BR_REG_EN
 
-`define ADDR_NONE 5'd17
+//`define ADDR_NONE 5'd17
+`define ADDR_NONE 5'b00000
 
 `define LSL1	7'd0	
 `define LSR1	7'd1

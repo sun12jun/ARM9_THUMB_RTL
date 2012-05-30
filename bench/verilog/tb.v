@@ -153,8 +153,10 @@ module arm_thumb_test();
 	//           If the first 4 bytes in input file is 1234_5678
 	//           then, the loaded value is mem[0x0000] = 0x1234_5678 (LSB)
 
-	defparam arm_thumb_test.inst_mem.ROMDATA = "/home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/bench/verilog/loop.hex";
+	defparam arm_thumb_test.inst_mem.ROMDATA = "/home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/bench/verilog/data_test.hex";
 	defparam arm_thumb_test.data_mem.ROMDATA = "/home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/bench/verilog/data.hex";
+	//defparam arm_thumb_test.inst_mem.ROMDATA = "./data_test.hex";
+	//defparam arm_thumb_test.data_mem.ROMDATA = "./data.hex";
 
 endmodule
 

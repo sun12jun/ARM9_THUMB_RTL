@@ -32,7 +32,8 @@ module SRAM (
 		$readmemh(ROMDATA, ram);
 	end
 	
-	assign #1 DO = outline;
+	//assign #1 DO = outline;
+	assign DO = outline;
 
 	always @ (posedge CLK) begin
 		if (~CSN) begin			// chip select at negative
