@@ -205,6 +205,52 @@ wire 	[15:0] 	pipe_inst;
 wire 	[31:0]	nzcv_updated;
 wire			dreq;
 
+wire 	stall;
+
+assign stall = 0;
+
+// before fetch 
+assign	global_pc_en 			= (stall)? 0 : 1;
+assign	global_inst_en			= (stall)? 0 : 1;	
+assign	global_cpsr_en			= (stall)? 0 : 1;
+// after fetch
+assign	pc2_fd_en				= (stall)? 0 : 1;
+assign	ir2_fd_en				= (stall)? 0 : 1;
+// after decode
+assign	fwd_req_m_de_en			= (stall)? 0 : 1;
+assign	fwd_sel_x_de_en			= (stall)? 0 : 1;
+assign	fwd_sel_y_de_en			= (stall)? 0 : 1;
+assign	rf_ra_a_de_en			= (stall)? 0 : 1;	
+assign	mem_w_en_de_en			= (stall)? 0 : 1;	
+assign	mem_w_sel_de_en			= (stall)? 0 : 1;	
+assign	mem_w_ld_nst_de_en		= (stall)? 0 : 1;	
+assign	grf_z_de_en				= (stall)? 0 : 1;
+assign	grf_z_de_1d_en			= (stall)? 0 : 1;
+assign	op_x_de_en				= (stall)? 0 : 1;	
+assign	op_y_de_en				= (stall)? 0 : 1;
+assign	shamt_de_en				= (stall)? 0 : 1;	
+assign	optype_de_en			= (stall)? 0 : 1;
+assign	xy_sel_de_en			= (stall)? 0 : 1;
+assign	valid_z_de_en			= (stall)? 0 : 1;
+// after decode
+assign	z_result_em_en			= (stall)? 0 : 1;	
+assign	z_result_em_1d_en		= (stall)? 0 : 1;		
+assign	validrd_out_em_en		= (stall)? 0 : 1;		
+assign	validrd_out_em_1d_en	= (stall)? 0 : 1;		
+assign	rd_out_em_en			= (stall)? 0: 1;		
+assign	rd_out_em_1d_en			= (stall)? 0: 1;	
+assign	mem_w_en_em_en			= (stall)? 0: 1;	
+assign	mem_w_sel_em_en			= (stall)? 0: 1;	
+assign	mem_w_ld_nst_em_en		= (stall)? 0: 1;		
+assign	fwd_req_m_em_en			= (stall)? 0: 1;	
+// after mem
+assign	wb_din_mw_en			= (stall)? 0: 1;	
+assign	wb_a_mw_en				= (stall)? 0: 1;
+assign	w_valid_mw_en			= (stall)? 0: 1;
+assign	exe_d_mw_en				= (stall)? 0: 1;
+
+
+
 //---------------------------------------------------------------------------
 //	IF stage
 //---------------------------------------------------------------------------
@@ -679,6 +725,8 @@ WB wb(
 //	IM, DM Memory access
 //---------------------------------------------------------------------------
 
+reg [31:0] pseudo_pc;
+reg [1:0] pc_cnt;
 // Read from Instruction Memory
 always @ (posedge CLK)  begin
     if(~RESET_N)    begin
@@ -691,14 +739,16 @@ always @ (posedge CLK)  begin
     end 
     else    begin
         if(~IREQ)    begin
-			if(im_req_flag) begin
-				IREQ <= 1'b1;
+//			if(im_req_flag) begin
+				//IREQ <= 1'b1;
 				//IADDR <= IADDR + {29'b0, 3'b100};
-				IADDR <= global_pc;
+				//IADDR <= global_pc;
+				IADDR <= pseudo_pc;
 				WAIT <= 1'b1;
-			end
+//			end
+				IREQ <= 1'b1;
 
-			im_req_flag <= !im_req_flag;
+//			im_req_flag <= !im_req_flag;
         end
         else if(IREQ && WAIT)   begin
             WAIT <= 1'b0;
@@ -711,6 +761,22 @@ always @ (posedge CLK)  begin
         end
     end
 
+end
+
+always @ (posedge CLK)  begin
+    if(~RESET_N)    begin
+		pseudo_pc <= 32'd0;
+		pc_cnt <= 2'd0;
+	end
+	else begin
+		if(pc_cnt==2'd1) begin
+			pc_cnt <= 2'd0;
+			pseudo_pc <= pseudo_pc + 31'd4;
+		end
+		else begin
+			pc_cnt <= pc_cnt + 2'd1;
+		end
+	end
 end
 
 //Write to Data Memory
@@ -726,12 +792,15 @@ always @ (posedge CLK)  begin
     else    begin
         if(WE && ~DREQ)  begin
             //DREQ <= 1'b1;
-            DREQ <= dreq;
-            DADDR <= DADDR + {29'b0, 3'b100};
+            //DADDR <= DADDR + {29'b0, 3'b100};
             //DRW <= 1'b1;
+            //DSIZE <= 2'b10;
+			//
+            DREQ <= dreq;
+            DADDR <= daddr;
             DRW <= drnw;
-            DSIZE <= 2'b10;
-            DOUT <= instr;
+            DSIZE <= dsize;
+            DOUT <= wdata;
         end
         else    begin
             DREQ <= 1'b0;

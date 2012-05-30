@@ -133,10 +133,13 @@ module arm_thumb_test();
 					.CLK (CLK),
 					.CSN (1'b0),		// always chip select
 					.ADDR (DADDR[13:2]),
-					.WE (DREQ && DRW),
+					//.WE (DREQ && DRW),
+					.WE (DREQ && DWE),
 					.BE (DBE),	
-					.DI (DIN),
-					.DO (DOUT)
+					//.DI (DIN),
+					//.DO (DOUT)
+					.DI (DOUT),
+					.DO (DIN)
 					);
 
 
@@ -150,8 +153,8 @@ module arm_thumb_test();
 	//           If the first 4 bytes in input file is 1234_5678
 	//           then, the loaded value is mem[0x0000] = 0x1234_5678 (LSB)
 
-	defparam arm_thumb_test.inst_mem.ROMDATA = "data_proc.hex";
-	defparam arm_thumb_test.data_mem.ROMDATA = "data.hex";
+	defparam arm_thumb_test.inst_mem.ROMDATA = "/home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/bench/verilog/loop.hex";
+	defparam arm_thumb_test.data_mem.ROMDATA = "/home/member/djyoon/Course_work/EE511_CA/ARM9_THUMB_RTL/bench/verilog/data.hex";
 
 endmodule
 
